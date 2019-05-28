@@ -1,0 +1,42 @@
+[
+    {
+        "role": "Front End Developer",
+        "hp": 100,
+        "ap": 7,
+        "dp": 3,
+        "image": "images/picture.jpeg",
+        "description": "Front End Developer!"
+    },
+    {
+        "role": "Back End Developer",
+        "hp": 100,
+        "ap": 3,
+        "dp": 7,
+        "image": "images/picture.jpeg",
+        "description": "Your back end could use some developing!"
+    },
+    {
+        "role": "Full Stack Developer",
+        "hp": 100,
+        "ap": 5,
+        "dp": 5,
+        "image": "images/picture.jpeg",
+        "description": "Doin it all!"
+    },
+    {
+        "role": "Teaching Assistant",
+        "hp": 125,
+        "ap": 7,
+        "dp": 7,
+        "image": "images/picture.jpeg",
+        "description": "Doin it all!"
+    },
+    {
+        "role": "Instructor",
+        "hp": 150,
+        "ap": 10,
+        "dp": 10,
+        "image": "images/picture.jpeg",
+        "description": "Fist to Five!"
+    }
+]
