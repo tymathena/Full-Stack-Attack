@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
 
-    var Opponent = sequelize.define("Post", {
+    var Opponent = sequelize.define("Opponent", {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         image: {
-            type: DataTypes.string,
+            type: DataTypes.STRING,
             allowNull: false
         },
         description: {
