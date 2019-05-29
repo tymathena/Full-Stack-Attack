@@ -69,7 +69,7 @@
         "ap": 1,
         "dp": 1,
         "image": "images/picture.jpeg",
-        "description": "Npm i bruises!"
+        "description": "npm i bruises!"
     },
     {
         "name": "Express.js",
