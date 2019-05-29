@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
 
-    var Class = sequelize.define("Post", {
+    const Class = sequelize.define("Class", {
         role: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -26,5 +26,14 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
-    return Class;
-};
+    Class.associate = function (models) {
+
+        Class.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+        return Class;
+    };
