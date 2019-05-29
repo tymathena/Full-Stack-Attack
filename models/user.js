@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
 
-    var User = sequelize.define("Post", {
+    const User = sequelize.define("User", {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -13,5 +13,9 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
+    User.associate = function(models) {
+        User.hasMany(models.Class, {
+        });
+    };    
     return User;
 };
