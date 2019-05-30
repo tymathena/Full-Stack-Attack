@@ -78,15 +78,14 @@ const renderModal = function () {
 const renderBattlePage = function (player, monster) {
 
     let gameBoard = `
-    // write the html for gameboard here
+    
     `
 
     
-    $(".board").append(gameBoard)
+    $(".board").html(gameBoard)
     // show battle page including buttons, characters, and char stats
 
 }
-
 
 
 
