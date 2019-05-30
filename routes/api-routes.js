@@ -12,7 +12,7 @@ module.exports = function (app) {
     });
 
     //GET route to get a single user from DB
-    app.get("/api/users/", function (req, res) {
+    app.get("/api/user/", function (req, res) {
         console.log("gets a user" + req.body)
         db.User.findOne({
             where: {
