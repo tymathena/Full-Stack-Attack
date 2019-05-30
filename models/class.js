@@ -4,35 +4,38 @@ module.exports = function (sequelize, DataTypes) {
         role: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "oh dear"
         },
         hp: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         ap: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         dp: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         image: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: "oh dear"
         },
         description: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "oh dear"
         }
     });
     Class.associate = function (models) {
 
-        Class.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        Class.hasMany(models.User, {});
+
     };
 
         return Class;

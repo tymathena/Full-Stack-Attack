@@ -1,8 +1,8 @@
 {
     "development": {
       "username": "root",
-      "password": "mouserug",
-      "database": "fsa",
+      "password": "Spatula!1",
+      "database": "fsadb",
       "host": "127.0.0.1",
       "port": 3306,
       "dialect": "mysql"
