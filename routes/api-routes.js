@@ -1,18 +1,8 @@
 
 var db = require("../models");
 
-///GET to Users to findOne character from your username/password if using your 
-
-//GET to opponent findOne for opponent
-
-//POST to user to create a player
-
-
-//
-
-
 module.exports = function (app) {
-
+    //POST route to create a new user
     app.post("/api/user", function (req, res) {
         console.log("post for new user creation" + req.body);
         db.User.create(req.body)
@@ -20,7 +10,8 @@ module.exports = function (app) {
                 res.json(dbUser);
             });
     });
-//
+
+    //GET route to get a single user from DB
     app.get("/api/users/", function (req, res) {
         console.log("gets a user" + req.body)
         db.User.findOne({
@@ -31,15 +22,45 @@ module.exports = function (app) {
         }).then(function (user) {
             res.json(user);
         })
-
     });
-//
+
+    //GET route to get all opponents from database
     app.get("/api/opponent/", function (req, res) {
         console.log("gets an opponent");
         db.Opponent.findAll({})
-        .then(function (dbOpp) {
-            res.json(dbOpp);
-        })
+            .then(function (dbOpp) {
+                res.json(dbOpp);
+            })
 
     });
+
+    //UPDATE route if user wishes to update something 
+    app.put("/api/user", function (req, res) {
+        db.User.update({
+            name: req.body.name,
+            password: req.body.password,
+            role: req.body.role
+        }, {
+                where: {
+                    name: req.body.name,
+                    password: req.body.password
+                }
+            })
+            .then(function (dbUpdate) {
+                res.json(dbUpdate);
+            });
+    });
+
+    //DELETE route if we want to delete a user
+    app.delete("/api/user/:id", function (req, res) {
+        db.User.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(function (dbDelete) {
+                res.json(dbDelete);
+            });
+    });
+
 }
