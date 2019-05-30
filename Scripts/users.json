@@ -1,6 +1,7 @@
 [
     {
         "name": "New User 1",
+        "password": "password",
         "commits": 100
     }
 ]

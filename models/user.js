@@ -6,14 +6,16 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 len: [1, 16]
-            }
+            },
+            defaultValue: "name"
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1, 16]
-            }
+            },
+            defaultValue: "pw"
         },
         commits: {
             type: DataTypes.INTEGER,
@@ -22,7 +24,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     User.associate = function(models) {
-        User.hasMany(models.Class, {
+        User.belongsTo(models.Class, {
+            foreignKey: {
+                allowNull: false, 
+                defaultValue: 1
+            }
         });
     };    
     return User;
