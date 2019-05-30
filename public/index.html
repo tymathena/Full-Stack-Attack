@@ -22,6 +22,47 @@
             <p><a href="/api/opponent">API Opponents Link</a>
         </div>
     </footer>
+
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Time for Battle!</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="card" id="player-card">
+                                <div class="card-content">
+                                    <h3 id="player-name">${user.name}</h3>
+                                    <img src="${user.class.image}" style="width:100%">
+                                </div>
+                                <div class="card-footer">
+                                    <p id="player-role">Role: ${user.class.role.price}</p>
+                                    <p id="player-description">Description: ${user.class.description}</p>
+                                    <p id="stats"> Heath: ${user.class.hp} Attack Power: ${user.class.ap} Defense: ${user.class.dp}</p>
+                                </div>
+                            </div>
+                        
+                            <div class="card" id="opponent-card">
+                                    <div class="card-content">
+                                        <h3 id="opponent-name">${opponent.name}</h3>
+                                        <img src="${opponent.image}" style="width:100%">
+                                    </div>
+                                    <div class="card-footer">
+                                        <p id="product-price">Role: ${user.class.role.price}</p>
+                                        <p id="product-quantity">Description: ${user.class.description}</p>
+                                     </div>    
+                                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="startOver" data-dismiss="modal">Fight!</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="logic.js"></script>
 </body>
 </html>
