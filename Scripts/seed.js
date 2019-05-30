@@ -1,7 +1,7 @@
 const db = require("../models");
 const users = require("./users.json");
 const opponents = require("./opponents.json");
-const classes = require("./players.json");
+const classes = require("./classes.json");
 const FORCE = process.argv[2] === "true";
 
 db.sequelize.sync({ force: FORCE }).then(function () {
