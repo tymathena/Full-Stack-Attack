@@ -101,7 +101,8 @@ $(document).ready(function () {
 });
 
 // ===============GAME LOGIC======================
-// popuate with find all
+// populate with find all
+
 
 
 enemies = []
