@@ -24,8 +24,10 @@
 //increases commits by 10. repeat rounds until final boss. After final boss display credits.   
 
 $(document).ready(function () {
-
     renderLogIn();
+    getUserClass();
+    
+    
 
     const renderLogIn = function (){
         
@@ -45,6 +47,42 @@ $(document).ready(function () {
 
           $(".login-div").append(logInForm)
     }
+
+    function getUserClass() {
+      $.get("/api/products", function (data) {
+          const userClasses = data;
+          $(".class-row").empty()
+          createUserClassCard(userClasses)
+      })
+  }
+
+    function createUserClassCard(classes) {
+      for (let i = 0; i < classes.length; i++) {
+
+          const userClassCard =
+              `<div class="col-lg-4 card">
+              <div>
+                  <div class="card-header" id="${classes[i].id}">
+                      ${classes[i].role}
+                  </div>
+                  <div class="card-body">
+                  <img id="userclass-image" src="${classes[i].image}" alt="Product Image">
+                      
+                      </div>
+                      <div class="form-group">
+                          <form class="form-row">
+                                  <label class="hp" data-id="${classes[i].hp}>${classes[i].hp}</label>
+                                  <label class="ap" data-id="${classes[i].ap}>${classes[i].ap}</label>
+                                  <label class="dp" data-id="${classes[i].dp}>${classes[i].dp}</label>
+                                  <label class="description" data-id="${classes[i].description}>${classes[i].description}</label>
+                                  <button type="button" class="btn btn-primary btn-defult col-sm-12 col-xs-12 select-user" data-id="${classes[i].id}">Select Character!</button>
+                          </form>
+                  </div>
+              </div>
+          </div>`
+          $(".class-row").append(productCard)
+      }
+  }
 
 
     $("#create-submit").on("click", function () {
@@ -113,3 +151,11 @@ playerAttack({
     dp: 5,
     hp: 100
 });
+
+const levelUp = function(Player){
+    const rewards =
+    player.ap + 1
+    player.dp + 1
+    player.commits + 10
+    
+}
