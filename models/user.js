@@ -21,6 +21,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0
+        },
+        lives: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 5
         }
     });
     User.associate = function(models) {
