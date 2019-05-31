@@ -1,5 +1,6 @@
 
 var db = require("../models");
+const path = require("path")
 
 module.exports = function (app) {
     //POST route to create a new user
@@ -71,4 +72,37 @@ module.exports = function (app) {
         })
     });
 
+    //route to snag player pictures
+    app.get("/api/images/user/:pictureType", function (req, res) {
+        
+        const pictureAttribute = req.params.pictureType === "image" ? "image" : "attackImage";
+        console.log(req.body);
+
+        db.Class.findOne({
+            where: {
+                role: req.body.role
+            }
+        }).then(function (userClass) {
+            console.log(userClass[pictureAttribute]);
+            res.sendFile(path.join(__dirname, userClass[pictureAttribute]));
+        })
+
+    })
+
+
+    //route to snag opponent pictures
+    app.get("/api/images/opponent/", function (req, res) {
+        
+        console.log(req.body);
+
+        db.Opponent.findOne({
+            where: {
+                name: req.body.name
+            }
+        }).then(function (opp) {
+            console.log(opp.image);
+            res.sendFile(path.join(__dirname, opp.image));
+        })
+
+    })
 }
