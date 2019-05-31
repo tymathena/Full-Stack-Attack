@@ -1,24 +1,25 @@
 
 $(document).ready(function () {
-    let id;
-    renderLogIn()
-    getClasses()
 
+    let id;
 
     $(".select-user").on("click", function(e) {
         e.preventDefault()
+        console.log("click char select")
         setUserClass()
     })
 
 
     $(".login-submit").on("click", function(e) {
         e.preventDefault()
+        console.log("click char select")
         getUser()
     })
 
 
     $(".create-submit").on("click", function (e) {
         e.preventDefault()
+        console.log("click char select")
         addUser()  
     })
 
@@ -30,21 +31,23 @@ $(document).ready(function () {
     }
 
     const renderLogIn = function (){
-        
+        $(".text-center").empty();
         $(".login").empty()
         const logInForm = 
         `<form class="row login">
         <div class="form-group col-12">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter User Name">
+          <input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter User Name">
         </div>
         <div class="form-group col-12">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" placeholder="Enter Password!">
-        </div>
+          </div>
+          </form>
+        <div class="role-cards"> </div>
         <button type="submit" class="btn btn-primary col-12 login-submit">Log In</button>
         <button type="submit" class="btn btn-primary col-12 create-submit">Create User</button>
-          </form>`
+          `
 
           $(".login").append(logInForm)
     }
@@ -83,21 +86,23 @@ $(document).ready(function () {
                       ${classes[i].role}
                   </div>
                   <div class="card-body">
-                  <img id="userclass-image" src="${classes[i].image}" alt="Product Image">
-                      
-                      </div>
-                      <div class="form-group">
-                          <form class="form-row">
-                                  <label class="hp" data-id="${classes[i].hp}>${classes[i].hp}</label>
-                                  <label class="ap" data-id="${classes[i].ap}>${classes[i].ap}</label>
-                                  <label class="dp" data-id="${classes[i].dp}>${classes[i].dp}</label>
-                                  <label class="description" data-id="${classes[i].description}>${classes[i].description}</label>
-                                  <button type="button" class="btn btn-primary btn-defult col-sm-12 col-xs-12 select-user" data-id="${classes[i].id}">Select Character!</button>
-                          </form>
+                      <img id="userclass-image" src="${classes[i].image}" alt="Product Image">
+          
+                  </div>
+                  <div class="form-group">
+                      <form class="form-row">
+                          <label class="hp" data-id="${classes[i].hp}">"${classes[i].hp}"</label>
+                          <label class="ap" data-id="${classes[i].ap}">"${classes[i].ap}"</label>
+                          <label class="dp" data-id="${classes[i].dp}">"${classes[i].dp}"</label>
+                          <label class="description" data-id="${classes[i].description}">"${classes[i].description}"</label>
+                          <button type="button" class="btn btn-primary btn-default select-user" data-id="${classes[i].id}">Select Character!</button>
+                      </form>
                   </div>
               </div>
           </div>`
-          $(".class").append(userClassCard)
+          $(".role-cards").append(userClassCard)
       }
   }
+  renderLogIn()
+  getClasses()
 });

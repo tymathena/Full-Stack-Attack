@@ -9,17 +9,17 @@ module.exports = function (sequelize, DataTypes) {
         hp: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0
+            defaultValue: 100
         },
         ap: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0
+            defaultValue: 7
         },
         dp: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0
+            defaultValue: 5
         },
         image: {
             type: DataTypes.STRING,
