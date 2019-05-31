@@ -28,13 +28,13 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: 5
         }
     });
-    User.associate = function(models) {
+    User.associate = function (models) {
         User.belongsTo(models.Class, {
             foreignKey: {
-                allowNull: false, 
+                allowNull: false,
                 defaultValue: 1
             }
         });
-    };    
+    };
     return User;
 };

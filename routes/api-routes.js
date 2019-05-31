@@ -84,7 +84,7 @@ module.exports = function (app) {
             }
         }).then(function (userClass) {
             console.log(userClass[pictureAttribute]);
-            res.sendFile(path.join(__dirname, userClass[pictureAttribute]));
+            res.end(path.join(__dirname, userClass[pictureAttribute]));
         })
 
     })
@@ -101,7 +101,7 @@ module.exports = function (app) {
             }
         }).then(function (opp) {
             console.log(opp.image);
-            res.sendFile(path.join(__dirname, opp.image));
+            res.end(path.join(__dirname, opp.image));
         })
 
     })
