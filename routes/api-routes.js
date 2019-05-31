@@ -4,7 +4,7 @@ var db = require("../models");
 module.exports = function (app) {
     //POST route to create a new user
     app.post("/api/user", function (req, res) {
-        console.log("post for new user creation" + req.body);
+        console.log("adding this user:" + req.body);
         db.User.create(req.body)
             .then(function (dbUser) {
                 res.json(dbUser);
@@ -61,6 +61,14 @@ module.exports = function (app) {
             .then(function (dbDelete) {
                 res.json(dbDelete);
             });
+    });
+
+    app.get("/api/class/", function (req, res) {
+        console.log("gets a class:" + req.body)
+        db.Class.findAll()
+        .then(function (userClass) {
+            res.json(userClass);
+        })
     });
 
 }
