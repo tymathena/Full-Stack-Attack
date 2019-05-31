@@ -12,7 +12,7 @@
         "hp": 15,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/dollars.png",
         "description": "Oh Shit, Git! Prepare to be version controlled!"
     },
     {
@@ -20,7 +20,7 @@
         "hp": 20,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/html.png",
         "description": "Hyper Traumatic Murder League!"
     },
     {
@@ -28,7 +28,7 @@
         "hp": 25,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/css.png",
         "description": "Killing you with style!"
     },
     {
@@ -36,7 +36,7 @@
         "hp": 10,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/bootstrap.png",
         "description": "Time to flex-box the heavy weight champion!"
     },
     {
@@ -44,7 +44,7 @@
         "hp": 10,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/javascript.png",
         "description": "Maim || Kill"
     },
     {
@@ -52,7 +52,7 @@
         "hp": 15,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/jquery.png",
         "description": "Prepare to be manipulated by your DOM!"
     },
     {
@@ -60,7 +60,7 @@
         "hp": 20,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/whiteboard.png",
         "description": "Time is running out......!"
     },
     {
@@ -68,7 +68,7 @@
         "hp": 30,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/node.png",
         "description": "npm i bruises!"
     },
     {
@@ -76,7 +76,7 @@
         "hp": 40,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/express.png",
         "description": "Hop on the pain train!"
     },
     {
@@ -84,7 +84,7 @@
         "hp": 50,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/mysql.png",
         "description": "Im gonna make you SQL like a pig!"
     },
     {
@@ -92,7 +92,7 @@
         "hp": 60,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/group.png",
         "description": "Im the MVP!"
     },
     {
@@ -100,7 +100,7 @@
         "hp": 70,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/mergeConflicts.png",
         "description": "No I'm the MVP! Git push -f origin master"
     },
     {
@@ -108,7 +108,7 @@
         "hp": 80,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/sequelize.png",
         "description": "Player.DESTROY!"
     },
     {
@@ -116,7 +116,7 @@
         "hp": 90,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/mongodb.png",
         "description": "404 Enemy Not Found!"
     },
     {
@@ -124,7 +124,7 @@
         "hp": 95,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/react.png",
         "description": "Zuck You!"
     },
     {
@@ -132,7 +132,7 @@
         "hp": 100,
         "ap": 1,
         "dp": 1,
-        "image": "images/picture.jpeg",
+        "image": "/api/images/opponents/interview.png",
         "description": "Entry Level Position - 3 Years Experience Required"
     }
 ]

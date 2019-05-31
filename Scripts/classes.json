@@ -4,39 +4,44 @@
         "hp": 100,
         "ap": 7,
         "dp": 3,
-        "image": "images/picture.jpeg",
-        "description": "This is one ugly website!"
+        "image": "/api/images/players/frontend.png",
+        "description": "This is one ugly website!",
+        "attackImage": "/api/images/attacks/frontend.png"
     },
     {
         "role": "Back End Developer",
         "hp": 100,
         "ap": 3,
         "dp": 7,
-        "image": "images/picture.jpeg",
-        "description": "Your back end could use some developing!"
+        "image": "/api/images/players/backend.png",
+        "description": "Your back end could use some developing!",
+        "attackImage": "/api/images/attacks/backend.png"
     },
     {
         "role": "Full Stack Developer",
         "hp": 100,
         "ap": 5,
         "dp": 5,
-        "image": "images/picture.jpeg",
-        "description": "Doin it all!"
+        "image": "/api/images/players/fullstack.png",
+        "description": "Doin it all!",
+        "attackImage": "/api/images/attacks/fullstack.png"
     },
     {
         "role": "Teaching Assistant",
         "hp": 125,
         "ap": 7,
         "dp": 7,
-        "image": "images/picture.jpeg",
-        "description": "Doin it all!"
+        "image": "/api/images/players/ta.png",
+        "description": "Doin it all!",
+        "attackImage": "/api/images/attacks/ta.png"
     },
     {
         "role": "Instructor",
         "hp": 150,
         "ap": 10,
         "dp": 10,
-        "image": "images/picture.jpeg",
-        "description": "Fist to Five!"
+        "image": "/api/images/players/jacob.png",
+        "description": "Fist to Five!",
+        "attackImage": "/api/images/attacks/jacob.png"
     }
 ]
