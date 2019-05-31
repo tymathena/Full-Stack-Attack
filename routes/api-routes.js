@@ -13,12 +13,11 @@ module.exports = function (app) {
     });
 
     //GET route to get a single user from DB
-    app.get("/api/user/", function (req, res) {
+    app.get("/api/user/:name", function (req, res) {
         console.log("gets a user" + req.body)
         db.User.findOne({
             where: {
-                name: req.body.name,
-                password: req.body.password
+                name: req.params.name,
             }
         }).then(function (user) {
             res.json(user);

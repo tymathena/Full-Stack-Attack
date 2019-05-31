@@ -3,34 +3,14 @@ $(document).ready(function () {
 
     let id;
 
-    $(".select-user").on("click", function(e) {
-        e.preventDefault()
-        console.log("click char select")
-        setUserClass()
-    })
-
-
-    $(".login-submit").on("click", function(e) {
-        e.preventDefault()
-        console.log("click char select")
-        getUser()
-    })
-
-
-    $(".create-submit").on("click", function (e) {
-        e.preventDefault()
-        console.log("click char select")
-        addUser()  
-    })
-
 
     
     
-    const setUserClass = function() {
+    function setUserClass(id) {
         id = $(this).attr("data-id")
     }
 
-    const renderLogIn = function (){
+    function renderLogIn() {
         $(".text-center").empty();
         $(".login").empty()
         const logInForm = 
@@ -52,19 +32,24 @@ $(document).ready(function () {
           $(".login").append(logInForm)
     }
 
-    function addUser() {
+    function addUser(id) {
         const newUser = {
-            name: $(`.name[data-id="data-name"]`).val(),
-            password: $(`.classId[data-id="data-password"]`).val(),
-            classId: $(`.classId[data-id="data-id"]`).val(), 
+            name: $(`#email`).val(),
+            password: $(`#password`).val(),
+            classId: id, 
 
         }
         $.post("/api/user", newUser).then(console.log("User Added!"))
     }
 
     function getUser() {
-        $.get("/api/user", function (data) {
-            const currentUser = data;
+        console.log("getUser")
+        $.get(`/api/user/${$(`#email`).val()}`, function (data) {
+            if (data && data.password === $(`#password`).val()) {
+                currentUser = data;
+            } else {
+                console.log("user not found")
+            }
         })
     }
 
@@ -103,6 +88,28 @@ $(document).ready(function () {
           $(".role-cards").append(userClassCard)
       }
   }
+
   renderLogIn()
   getClasses()
+
+
+  $(".select-user").on("click", function(e) {
+    e.preventDefault()
+    console.log("hey")
+    setUserClass(id)
+})
+
+
+$(".login-submit").on("click", function(e) {
+    e.preventDefault()
+    console.log("click char select")
+    getUser()
+})
+
+
+$(".create-submit").on("click", function (e) {
+    e.preventDefault()
+    console.log("click char select")
+    addUser()  
+})
 });
