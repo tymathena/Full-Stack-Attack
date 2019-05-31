@@ -58,43 +58,72 @@ const renderBattlePage = function (player, monster) {
     
     `
 
-    
+
     $(".board").html(gameBoard)
     // show battle page including buttons, characters, and char stats
 
 }
 
+//Battle Logic//
+
+let enemyAttacked;
+
+
+const Attack = function (Player, Defender) {
+    if (Player == User.Class) {
+        enemyAttacked = false;
+    }
+    const atkSum = Player.ap + (Math.floor(Math.random() * 20)) - Defender.dp + (Math.floor(Math.random() * 20));
+    const remainingHP = Defender.hp - atkSum;
+    def.hp -= atkSum;
+
+};
+
+const battle = function (Player, Monster) {
+
+    if (Player.hp <= 0) {
+        Player.Lives -= 1;
+    } else if (Player.Lives == 0) {
+        (console.log("Game Over"))
+    } else if (Monster.hp <= 0) {
+        levelUp(Player);
+    } else {
+        if (!monsterAttacked) {
+            setTimeout(() => {
+                enemyAttacked = true;
+                attack(Player, Monster);
+            }, 7000);
+
+
+        }
+    }
 
 
 
 
-const playerAttack = function(Attacker, Defender){
+    const levelUp = function (Player) {
+        const rewards =
+            player.ap += 1
+        player.dp += 1
+        player.commits += 10
+        player.health += 50;
+        upDatePlayers(Player, rewards)
 
-    const atkSum = Attacker.ap + (Math.floor(Math.random() * 20)) -  Defender.dp + (Math.floor(Math.random() * 20));
-    const remainingHP = Defender.hp - atkSum; 
-    Defender.hp = remainingHP
-    console.log(Defender.hp)
+    }
 
-    return Defender.hp
-  };
+}
 
+const upDatePlayers = function (Player, rewards) {
+    app.put("/api/user:id", function (req, res) {
+        db.fsadb.update(
+            req.body,
+            {
+                where: {
+                    id: req.body.id
+                }
+            }).then(function (dbUser) {
+                res.json(dbUser);
+            })
 
-playerAttack({
-    name: "Jacob",
-    ap:  7,
-    dp:  3,
-    hp: 100
-}, {
-    name: "HTML",
-    ap: 5,
-    dp: 5,
-    hp: 100
-});
-
-const levelUp = function(Player){
-    const rewards =
-    player.ap + 1
-    player.dp + 1
-    player.commits + 10
-    
+    })
 }
