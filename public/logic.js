@@ -93,13 +93,8 @@ const battle = function (Player, Monster) {
                 enemyAttacked = true;
                 attack(Player, Monster);
             }, 7000);
-
-
         }
     }
-
-
-
 
     const levelUp = function (Player) {
         const rewards =
@@ -107,13 +102,13 @@ const battle = function (Player, Monster) {
         player.dp += 1
         player.commits += 10
         player.health += 50;
-        upDatePlayers(Player, rewards)
+        updateUser(Player, rewards);
 
     }
 
 }
 
-const upDatePlayers = function (Player, rewards) {
+const updateUser = function (Player, rewards) {
     app.put("/api/user:id", function (req, res) {
         db.fsadb.update(
             req.body,
@@ -123,7 +118,13 @@ const upDatePlayers = function (Player, rewards) {
                 }
             }).then(function (dbUser) {
                 res.json(dbUser);
-            })
+            });
 
-    })
+    });
+
 }
+
+$("#attack").click(function (event) {
+    event.preventDefault();
+    Attack(Player, Monster)
+});
