@@ -56,6 +56,7 @@ $(document).ready(function () {
             classId: $(`.classId[data-id="data-id"]`).val(), 
 
         }
+        $.post("/api/user", newUser).then(console.log("User Added!"))
     }
 
     function getUser() {
