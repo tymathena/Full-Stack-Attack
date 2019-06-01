@@ -3,9 +3,46 @@
 // ===============GAME LOGIC======================
 // populate with find all
 
-enemies = []
+let enemies = []
+let enemyId = 0
 
+function getEnemies (){
+    $.get("api/opponent/", function(data) {
+        enemies = data;
+        console.log(enemies)
+        renderEnemy(enemies, enemyId)
+    })
+    
+}
 
+function renderEnemy(enemies, enemyId) {
+    console.log(enemies[enemyId])
+     { 
+        const enemyCard =
+            `<div class="card">
+            <div>
+                <div class="card-header" id="${enemies[enemyId].id}">
+                    ${enemies[enemyId].name}
+                </div>
+                <div class="card-body">
+                    <img id="userclass-image" src="${enemies[enemyId].image}" alt="Product Image">
+        
+                </div>
+                <div class="form-group">
+                    <form class="form-row">
+                        <p class="hp" data-id="${enemies[enemyId].hp}">Health: ${enemies[enemyId].hp}</p>
+                        <p class="ap" data-id="${enemies[enemyId].ap}">Attack: ${enemies[enemyId].ap}</p>
+                        <p class="dp" data-id="${enemies[enemyId].dp}">Defense: ${enemies[enemyId].dp}</p>
+                        <div id="enemyHP" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25"
+                                    aria-valuemin="0" aria-valuemax="100">100%</div>
+                    </form>
+                </div>
+            </div>
+        </div>`
+        $("#enemyHP").attr('style', 'width:' + enemies[enemyId].hp + '%')
+        $(".enemy-card").append(enemyCard)
+    }
+}
 
 function getCurrentUser() {
     id = 1
@@ -62,19 +99,6 @@ const renderModal = function () {
 
 }
 
-
-const renderBattlePage = function (player, monster) {
-
-    let gameBoard = `
-    
-    `
-
-
-    $(".board").html(gameBoard)
-    // show battle page including buttons, characters, and char stats
-
-}
-
 //Battle Logic//
 
 let enemyAttacked;
@@ -113,29 +137,31 @@ const battle = function (Player, Monster) {
         player.dp += 1
         player.commits += 10
         player.health += 50;
-        updateUser(Player, rewards);
+        // updateUser(Player, rewards);
 
     }
 
 }
 
-const updateUser = function (Player, rewards) {
-    app.put("/api/user:id", function (req, res) {
-        db.fsadb.update(
-            req.body,
-            {
-                where: {
-                    id: req.body.id
-                }
-            }).then(function (dbUser) {
-                res.json(dbUser);
-            });
+// const updateUser = function (Player, rewards) {
+//     app.put("/api/user:id", function (req, res) {
+//         db.User.update(
+//             req.body,
+//             {
+//                 where: {
+//                     id: req.body.id
+//                 }
+//             }).then(function (dbUser) {
+//                 res.json(dbUser);
+//             });
 
-    });
+//     });
 
-}
+// }
 
 getCurrentUser();
+getEnemies();
+
 
 $("#attack").click(function (event) {
     event.preventDefault();
