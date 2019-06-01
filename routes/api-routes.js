@@ -24,6 +24,44 @@ module.exports = function (app) {
         })
     });
 
+    app.get("/api/user/:id", function (req, res) {
+        console.log("gets a current user" + req.body)
+        db.User.findOne({
+            where: {
+                id: req.params.id,
+            }
+        }).then(function (user) {
+            res.json(user);
+        })
+    });
+        // sets currentuser in current user table
+    app.put("/api/currentUser/:id", function (req, res) {
+        db.CurrentUser.update(
+          req.body,
+        {
+          where: {
+            id: req.params.id
+          }
+        }).then(function() {
+          
+          res.json({message: "Update success!"})
+        }).catch(function(err) {
+          res.json({error: err})
+        })
+      });
+
+      app.get("/api/currentUser/:id", function (req, res) {
+        console.log("gets a current user" + req.body)
+        db.CurrentUser.findOne({
+            where: {
+                id: req.params.id,
+            }
+        }).then(function (user) {
+            res.json(user);
+        })
+    });
+
+
     //GET route to get all opponents from database
     app.get("/api/opponent/", function (req, res) {
         console.log("gets an opponent");

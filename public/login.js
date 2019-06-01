@@ -1,11 +1,4 @@
-
-$(document).ready(function () {
-
-    let id;
-
-
-    
-    
+   let id;
     function setUserClass(id) {
         id = $(this).attr("data-id")
     }
@@ -26,13 +19,15 @@ $(document).ready(function () {
           </form>
         <div class="role-cards"> </div>
         <div class="text-center">
-        <button type="submit" class="btn btn-primary col-12 login-submit">Log In</button>
+        <a type="submit" class="btn btn-primary col-12 login-submit">Login</a>
         <button type="submit" class="btn btn-primary col-12 create-submit">Create User</button>
         </div>
           `
 
           $(".login").append(logInForm)
     }
+
+
 
     function addUser(id) {
         const newUser = {
@@ -48,12 +43,37 @@ $(document).ready(function () {
         console.log("getUser")
         $.get(`/api/user/${$(`#email`).val()}`, function (data) {
             if (data && data.password === $(`#password`).val()) {
-                currentUser = data;
+                console.log(data)
+                id = data.id
+                console.log(id)
+                setCurrentUser(data, id)
             } else {
                 console.log("user not found")
             }
         })
+       
     }
+  
+function setCurrentUser(currentUser, id) {
+    var newCurrentUser = {
+        name: currentUser.name,
+        commits: currentUser.commits,
+        lives: currentUser.lives,
+        role: currentUser.role,
+        hp: currentUser.hp,
+        ap: currentUser.ap,
+        dp: currentUser.dp,
+        image: currentUser.image,
+        description: currentUser.description,
+        attackImage: currentUser.attackImage,
+    }
+    $.ajax({
+        method: "PUT",
+        url: "/api/currentUser/" + id,
+        data: newCurrentUser
+    })
+}
+
 
     function getClasses() {
       $.get("/api/class", function (data) {
@@ -91,6 +111,7 @@ $(document).ready(function () {
       }
   }
 
+
   renderLogIn()
   getClasses()
 
@@ -102,8 +123,8 @@ $(document).ready(function () {
 })
 
 
-$(".login-submit").on("click", function(e) {
-    e.preventDefault()
+$(".login-submit").on("click", function() {
+    
     console.log("click char select")
     getUser()
 })
@@ -114,4 +135,10 @@ $(".create-submit").on("click", function (e) {
     console.log("click char select")
     addUser()  
 })
-});
+
+
+
+
+
+
+
