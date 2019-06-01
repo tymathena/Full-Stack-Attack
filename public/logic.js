@@ -6,18 +6,18 @@
 let enemies = []
 let enemyId = 0
 
-function getEnemies (){
-    $.get("api/opponent/", function(data) {
+function getEnemies() {
+    $.get("api/opponent/", function (data) {
         enemies = data;
         console.log(enemies)
         renderEnemy(enemies, enemyId)
     })
-    
+
 }
 
 function renderEnemy(enemies, enemyId) {
     console.log(enemies[enemyId])
-     { 
+    {
         const enemyCard =
             `<div class="card">
             <div>
@@ -44,11 +44,43 @@ function renderEnemy(enemies, enemyId) {
     }
 }
 
+
+
+function renderUser(currentUser) {
+    console.log(currentUser.id)
+    {
+        const userCard =
+            `<div class="card">
+            <div>
+                <div class="card-header" id="${currentUser.id}">
+                    ${currentUser.name}
+                </div>
+                <div class="card-body">
+                    <img id="userclass-image" src="${currentUser.image}" alt="Product Image">
+        
+                </div>
+                <div class="form-group">
+                    <form class="form-row">
+                        <p class="hp" data-id="${currentUser.hp}">Health: ${currentUser.hp}</p>
+                        <p class="ap" data-id="${currentUser.ap}">Attack: ${currentUser.ap}</p>
+                        <p class="dp" data-id="${currentUser.dp}">Defense: ${currentUser.dp}</p>
+                        <div id="userHP" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25"
+                                    aria-valuemin="0" aria-valuemax="100">100%</div>
+                    </form>
+                </div>
+            </div>
+        </div>`
+        $("#userHP").attr('style', 'width:' + currentUser.hp + '%')
+        $(".user-card").append(userCard)
+    }
+}
+
 function getCurrentUser() {
     id = 1
-    $.get("api/currentUser/" + id, function(data) {
+    $.get("api/currentUser/" + id, function (data) {
         currentUser = data;
         console.log(currentUser)
+        renderUser(currentUser)
     })
 }
 

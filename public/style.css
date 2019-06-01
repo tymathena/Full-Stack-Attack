@@ -49,3 +49,22 @@ body {
 .login {
     padding: 15px;
 }
+
+/* trying to make the game responsive on a phone in landscape and portrait mode - needs more work*/
+
+@media (min-width: 375px) and (orientation:portrait) {
+    .user-card {
+         float: none;
+         width: 300px;
+         justify-content: center;   
+    }
+    .enemy-card {
+        float: none;
+        width: 300px;
+        justify-content: center;   
+   }
+   #userclass-image {
+    width: 100px;
+}
+
+}
