@@ -138,60 +138,57 @@ const renderModal = function () {
 let enemyAttacked;
 
 
-const Attack = function (Player, Defender) {
-    if (Player == User.Class) {
+const Attack = function (Attacker, Defender) {
+    if (Attacker == current) {
         enemyAttacked = false;
     }
-    const atkSum = Player.ap + (Math.floor(Math.random() * 20)) - Defender.dp + (Math.floor(Math.random() * 20));
-    const remainingHP = Defender.hp - atkSum;
-    def.hp -= atkSum;
+    const atkSum = currentUser.ap + (Math.floor(Math.random() * 20)) - Defender.dp + (Math.floor(Math.random() * 20));
+    Defender.hp -= atkSum;
+
+    battle();
 
 };
 
-const battle = function (Player, Monster) {
+const battle = function (currentUser, opponent) {
 
-    if (Player.hp <= 0) {
-        Player.Lives -= 1;
-    } else if (Player.Lives == 0) {
+    if (currentUser.hp <= 0) {
+        currentUser.lives -= 1;
+    } else if (currentUser.lives == 0) {
         (console.log("Game Over"))
-    } else if (Monster.hp <= 0) {
-        levelUp(Player);
+    } else if (opponent.hp <= 0) {
+        levelUp(currentUser);
+        console.log("You Win!")
     } else {
-        if (!monsterAttacked) {
+        if (!opponentAttacked) {
             setTimeout(() => {
                 enemyAttacked = true;
-                attack(Player, Monster);
+                attack(opponent, currentUser);
             }, 7000);
         }
     }
 
-    const levelUp = function (Player) {
-        const rewards =
-            player.ap += 1
-        player.dp += 1
-        player.commits += 10
-        player.health += 50;
-        // updateUser(Player, rewards);
-
-    }
-
 }
 
-// const updateUser = function (Player, rewards) {
-//     app.put("/api/user:id", function (req, res) {
-//         db.User.update(
-//             req.body,
-//             {
-//                 where: {
-//                     id: req.body.id
-//                 }
-//             }).then(function (dbUser) {
-//                 res.json(dbUser);
-//             });
+function levelUp() {
+     $.put("/api/currentUser"), function (req, res) {
+         db.currentUser.update({
+            ap: currentUser += 1,
+            dp: currentUser += 1,
+            hp: currentUser += 50,
+            commits: currentUser += 10
+         },
+             req.body,
+             {
+                 where: {
+                     id: req.body.id
+                 }
+            }).then(function (dbUser) {
+                res.json(dbUser);
+            });
 
-//     });
+    };
 
-// }
+ }
 
 
 getCurrentUser()
@@ -204,5 +201,5 @@ getEnemies()
 
 // $("#attack").click(function (event) {
 //     event.preventDefault();
-//     Attack(Player, Monster)
+//     Attack(currentUser, opponent)
 // });
