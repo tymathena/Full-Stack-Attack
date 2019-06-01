@@ -26,7 +26,7 @@ $(document).ready(function () {
           </form>
         <div class="role-cards"> </div>
         <div class="text-center">
-        <button type="submit" class="btn btn-primary col-12 login-submit">Log In</button>
+        <a type="submit" href="/board" class="btn btn-primary col-12 login-submit">Login</a>
         <button type="submit" class="btn btn-primary col-12 create-submit">Create User</button>
         </div>
           `
@@ -54,6 +54,7 @@ $(document).ready(function () {
             }
         })
     }
+
 
     function getClasses() {
       $.get("/api/class", function (data) {
@@ -102,8 +103,8 @@ $(document).ready(function () {
 })
 
 
-$(".login-submit").on("click", function(e) {
-    e.preventDefault()
+$(".login-submit").on("click", function() {
+    
     console.log("click char select")
     getUser()
 })
@@ -114,4 +115,6 @@ $(".create-submit").on("click", function (e) {
     console.log("click char select")
     addUser()  
 })
+
+
 });

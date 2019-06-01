@@ -1,9 +1,13 @@
+
+
 // ===============GAME LOGIC======================
 // populate with find all
 
 
 
 enemies = []
+
+
 
 const renderModal = function () {
     const modal = `   
