@@ -3,10 +3,17 @@
 // ===============GAME LOGIC======================
 // populate with find all
 
-
-
 enemies = []
 
+
+
+function getCurrentUser() {
+    id = 1
+    $.get("api/currentUser/" + id, function(data) {
+        currentUser = data;
+        console.log(currentUser)
+    })
+}
 
 
 const renderModal = function () {
@@ -127,6 +134,8 @@ const updateUser = function (Player, rewards) {
     });
 
 }
+
+getCurrentUser();
 
 $("#attack").click(function (event) {
     event.preventDefault();

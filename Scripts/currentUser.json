@@ -1,0 +1,14 @@
+[
+    {
+        "name": "DeafultUserName",
+        "commits": 1,
+        "lives": 1,
+        "role": "Front End Developer",
+        "hp": 1,
+        "ap": 1,
+        "dp": 1,
+        "image": "/images/players/frontend.jpg",
+        "description": "High Visibility, high damage!",
+        "attackImage": "/images/attacks/frontend.png"
+    }
+]
