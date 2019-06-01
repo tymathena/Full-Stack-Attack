@@ -4,8 +4,8 @@
         "hp": 100,
         "ap": 7,
         "dp": 3,
-        "image": "/images/players/frontend.png",
-        "description": "This is one ugly website!",
+        "image": "/images/players/frontend.jpg",
+        "description": "High Visibility, high damage!",
         "attackImage": "/images/attacks/frontend.png"
     },
     {
@@ -13,8 +13,8 @@
         "hp": 100,
         "ap": 3,
         "dp": 7,
-        "image": "/images/players/backend.png",
-        "description": "Your back end could use some developing!",
+        "image": "/images/players/backend.jpg",
+        "description": "With me nothing is impossible, but without me nothing is possible!",
         "attackImage": "/images/attacks/backend.png"
     },
     {
@@ -22,8 +22,8 @@
         "hp": 100,
         "ap": 5,
         "dp": 5,
-        "image": "images/players/fullstack.png",
-        "description": "Doin it all!",
+        "image": "images/players/fullstack.jpg",
+        "description": "Board knowledge, vast power!",
         "attackImage": "/images/attacks/fullstack.png"
     },
     {
@@ -32,7 +32,7 @@
         "ap": 7,
         "dp": 7,
         "image": "/images/players/ta.png",
-        "description": "Doin it all!",
+        "description": "You guys need any help?",
         "attackImage": "/images/attacks/ta.png"
     },
     {

@@ -17,7 +17,7 @@ $(document).ready(function () {
         `<form class="row login">
         <div class="form-group col-12">
           <label for="email">Email address</label>
-          <input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter User Name">
+          <input type="text" class="form-control" id="email" placeholder="Enter User Name">
         </div>
         <div class="form-group col-12">
           <label for="password">Password</label>
@@ -25,8 +25,10 @@ $(document).ready(function () {
           </div>
           </form>
         <div class="role-cards"> </div>
+        <div class="text-center">
         <button type="submit" class="btn btn-primary col-12 login-submit">Log In</button>
         <button type="submit" class="btn btn-primary col-12 create-submit">Create User</button>
+        </div>
           `
 
           $(".login").append(logInForm)
@@ -76,11 +78,11 @@ $(document).ready(function () {
                   </div>
                   <div class="form-group">
                       <form class="form-row">
-                          <label class="hp" data-id="${classes[i].hp}">"${classes[i].hp}"</label>
-                          <label class="ap" data-id="${classes[i].ap}">"${classes[i].ap}"</label>
-                          <label class="dp" data-id="${classes[i].dp}">"${classes[i].dp}"</label>
-                          <label class="description" data-id="${classes[i].description}">"${classes[i].description}"</label>
-                          <button type="button" class="btn btn-primary btn-default select-user" data-id="${classes[i].id}">Select Character!</button>
+                          <p class="hp" data-id="${classes[i].hp}">Health: ${classes[i].hp}</p>
+                          <p class="ap" data-id="${classes[i].ap}">Attack: ${classes[i].ap}</p>
+                          <p class="dp" data-id="${classes[i].dp}">Defense: ${classes[i].dp}</p>
+                          <p class="description" data-id="${classes[i].description}">${classes[i].description}</p>
+                          <button type="button" class="btn btn-warning btn-default select-user" data-id="${classes[i].id}">Select Character!</button>
                       </form>
                   </div>
               </div>

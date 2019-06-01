@@ -1,28 +1,51 @@
 body {
+    font-family: 'Sriracha', cursive;
+    background-image: url('images/laptop-burning.jpg');
+    background-repeat: none;
+  }
+
+.role-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-  }
+}
 
 .kick {
     width: 300px;
 }
 
 #userclass-image {
-    width: 150px;
+    width: 200px;
 }
 
-#class-card {
+.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: 20px;
-    padding: 0px;
+    padding-top: 15px;
     text-align: center;
-    font-family: arial;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
+    background-color: whitesmoke;
+}
+
+#email, #password {
+    width: 50%;
+
+}
+
+.login-submit, .create-submit {
+    font-size: 24px;
+}
+
+.container, .jumbotron {
+    background-color: whitesmoke;
+}
+
+.login {
+    padding: 15px;
 }
