@@ -6,6 +6,10 @@
 let enemies = []
 let enemyId = 0
 
+$("#attack-button").on("click", function() {
+    console.log("clicked the attack button!")
+})
+
 function getEnemies() {
     $.get("api/opponent/", function (data) {
         enemies = data;
@@ -43,8 +47,6 @@ function renderEnemy(enemies, enemyId) {
         $(".enemy-card").append(enemyCard)
     }
 }
-
-
 
 function renderUser(currentUser) {
     console.log(currentUser.id)
@@ -191,11 +193,16 @@ const battle = function (Player, Monster) {
 
 // }
 
-getCurrentUser();
-getEnemies();
+
+getCurrentUser()
+getEnemies()
 
 
-$("#attack").click(function (event) {
-    event.preventDefault();
-    Attack(Player, Monster)
-});
+
+
+
+
+// $("#attack").click(function (event) {
+//     event.preventDefault();
+//     Attack(Player, Monster)
+// });
