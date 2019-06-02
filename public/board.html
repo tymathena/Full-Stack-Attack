@@ -23,49 +23,6 @@
             </div>
             <div class="enemy-card col-xs-4 col-md-4"></div>
         </div>
-
-    </div>
-
-
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title">Time for Battle!</h1>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card" id="player-card">
-                        <div class="card-content">
-                            <h3 id="player-name"></h3>
-                            <img id="player-image" src="" style="width:100%">
-                        </div>
-                        <div class="card-footer">
-                            <p id="player-role"></p>
-                            <p id="player-des">Description: ${user.class.description}</p>
-                            <p id="stats"> Heath: ${user.class.hp} Attack Power: ${user.class.ap} Defense:
-                                ${user.class.dp}</p>
-                        </div>
-                    </div>
-
-                    <div class="card" id="opp-card">
-                        <div class="card-content">
-                            <h3 id="opp-name"></h3>
-                            <img id="opp-image" src="" style="width:100%">
-                        </div>
-                        <div class="card-footer">
-                            <p id="opp-des">Description: ${opponent.description}</p>
-                            <p id="opp-hp"> Health: ${opponent.hp}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" id="startOver" data-dismiss="modal">Fight!</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div id="end-round" class="modal fade" role="dialog">
@@ -77,11 +34,11 @@
                     </h3>
                 </div>
                 <div class="modal-body img-responsive">
-                    <img id="player-image" src="" style="height:100%; width: 100%"
-                        alt="player-image">
-                        <p class="hp"></p>
-                        <p class="ap"></p>
-                        <p class="dp"></p>
+                    <img id="player-image" src="" style="height:100%; width: 100%" alt="player-image">
+                    <p class="hp"></p>
+                    <p class="ap"></p>
+                    <p class="dp"></p>
+                    <p class="lives"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" id="next-round" data-dismiss="modal">Next Round</button>

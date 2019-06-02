@@ -56,8 +56,11 @@ function getEntityCard(entity) {
     return (
         `<div class="card">
         <div>
-            <div class="card-header" id="${entity.id}">
+            <h2 class="card-header" id="${entity.id}">
                 ${entity.name}
+            </h2>
+            <div id="${entity.id}">
+                ${entity.description}
             </div>
             <div class="card-body">
                 <img id="userclass-image" src="${entity.image}" alt="Product Image">
@@ -74,21 +77,27 @@ function getEntityCard(entity) {
     </div>`);
 }
 
-
-function renderEndOfRoundModal() {
+function renderEndOfRoundModal(endOfRoundMessage) {
     console.log("renderNedOfRoundMOdalFunction()")
+    let buttonText = 'Next Round';
+    if (currentUser.lives <= 0) {
+        buttonText = 'File for unemployment';
+    } else if (currentUser.hp <= 0) {
+        buttonText = 'CAFFEINE BOOST!';
+    }
+
     $(".hp").text(`Health: ${currentUser.hp}`)
     $(".ap").text(`Attack: ${currentUser.ap}`)
     $(".dp").text(`Defense: ${currentUser.dp}`)
+    $(".lives").text(`Lives: ${currentUser.lives}`)
     $(".round-message").text(`${endOfRoundMessage}`)
     $("#player-image").attr("src", currentUser.image); 
+    $("#next-round").text(buttonText);
     $("#end-round").modal("toggle");
 }
 
 
 //Battle Logic//
-
-let endOfRoundMessage = ""
 
 function battle() {
     if (currentUser.hp > 0 && currentEnemy.hp > 0) {
@@ -107,18 +116,15 @@ function useAbility(attacker, defender) {
     }
 }
 
-function renderCurrentEnemy() {
-    renderEnemy()
-}
-
 function nextEnemy() {
     const nextEnemyId = enemyId + 1;
     if (nextEnemyId < enemies.length) {
         enemyId = nextEnemyId;
         currentEnemy = enemies[enemyId];
         currentEnemy.maxHp = currentEnemy.hp;
+        renderEndOfRoundModal("You defeated the enemy! Another approaches!")
     } else {
-        console.log("You Win!")
+        renderEndOfRoundModal("You Won! You now have a job!")
 
         // TODO update the UI and end the game
     }
@@ -129,18 +135,16 @@ function nextEnemy() {
 function checkStatus() {
     if (currentUser.hp <= 0) {
         currentUser.lives -= 1
-        endOfRoundMessage = "you lost. replay the same enemy"
-        renderEndOfRoundModal(endOfRoundMessage)
-        renderCurrentEnemy()
-    } else if (currentUser.lives == 0) {
-        console.log("Game Over");
-        endOfRoundMessage = "Game Over!"
-        // TODO update the UI and end the game
-
+        if (currentUser.lives == 0) {
+            console.log("Game Over");
+            renderEndOfRoundModal("Game Over! You are unemployed!")
+        } else {
+            renderEndOfRoundModal("You died! Get more coffee!")
+            currentEnemy.hp = currentEnemy.maxHp;
+            currentUser.hp = currentUser.maxHp;
+        }
     } else if (currentEnemy.hp <= 0) {
         levelUp();
-        endOfRoundMessage = "You Won! Click the button to move on to the next round!"
-        renderEndOfRoundModal(endOfRoundMessage)
         nextEnemy();   
     }
 }
