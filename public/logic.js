@@ -54,7 +54,7 @@ function getEntityCard(entity) {
 
     const percent = Math.floor((entity.hp * 100) / entity.maxHp);
     return (
-    `<div class="card">
+        `<div class="card">
         <div>
             <div class="card-header" id="${entity.id}">
                 ${entity.name}
@@ -74,7 +74,25 @@ function getEntityCard(entity) {
     </div>`);
 }
 
+$(document).on("click", "#next-round", function () {
+    $("#end-round").modal("hide")
+    nextEnemy()
+})
+
+function renderEndOfRoundModal() {
+    console.log("renderNedOfRoundMOdalFunction()")
+    $(".hp").text(`Health: ${currentUser.hp}`)
+    $(".ap").text(`Attack: ${currentUser.ap}`)
+    $(".dp").text(`Defense: ${currentUser.dp}`)
+    $(".round-message").text(`${endOfRoundMessage}`)
+    $("#player-image").attr("src", currentUser.image); 
+    $("#end-round").modal("show");
+}
+
+
 //Battle Logic//
+
+let endOfRoundMessage = ""
 
 function battle() {
     if (currentUser.hp > 0 && currentEnemy.hp > 0) {
@@ -87,8 +105,7 @@ function battle() {
 };
 
 function useAbility(attacker, defender) {
-    // TODO add back the randomness somehow
-    const atkSum = attacker.ap - defender.dp;
+    const atkSum = attacker.ap + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
     if (atkSum > 0) {
         defender.hp = Math.max(0, defender.hp - atkSum);
     }
@@ -114,12 +131,16 @@ function checkStatus() {
         currentUser.lives -= 1;
     } else if (currentUser.lives == 0) {
         console.log("Game Over");
+        endOfRoundMessage = "Game Over!"
+        renderEndOfRoundModal(endOfRoundMessage)
 
         // TODO update the UI and end the game
 
     } else if (currentEnemy.hp <= 0) {
         levelUp();
-        setTimeout(nextEnemy, 1000);
+        // setTimeout(nextEnemy, 1000);
+        endOfRoundMessage = "You Won! Click the button to move on to the next round!"
+        renderEndOfRoundModal(endOfRoundMessage)
     }
 }
 
@@ -149,9 +170,11 @@ function levelUp() {
     // })
 }
 
-$("#attack-button").on("click", function() {
+$("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
     battle();
 })
+
+
 
 loadCurrentUser()
