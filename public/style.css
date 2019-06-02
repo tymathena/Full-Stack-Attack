@@ -70,9 +70,8 @@ body {
         float: none;
         width: 300px;
         justify-content: center;   
-   }
-   #userclass-image {
-    width: 100px;
-}
-
+    }
+    #userclass-image {
+        width: 100px;
+    }
 }

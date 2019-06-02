@@ -40,14 +40,15 @@ function tryLogInUser() {
             }
         } else {
             // create the user and assign to global variable
-            currentUser = {
+            const newUser = {
                 name: $(`#email`).val(),
                 password: $(`#password`).val(),
             }
             
             // add the user to the database
-            $.post("/api/user", currentUser).then(function(value) {
-                console.log("User Added!", value)
+            $.post("/api/user", newUser).then(function(newData) {
+                console.log("User Added!", newData)
+                currentUser = newData;
 
                 // move to the next screen
                 $(".login").empty()
@@ -97,29 +98,21 @@ function createClassCard(classes) {
 }
 
 function startGame(classId) {
-    // why are we copying everything instead of just using the 'currentUser' object???
-    var userData = {
-        name: currentUser.name,
-        commits: currentUser.commits,
-        lives: currentUser.lives,
-        role: currentUser.role,
-        hp: currentUser.hp,
-        ap: currentUser.ap,
-        dp: currentUser.dp,
-        image: currentUser.image,
-        description: currentUser.description,
-        attackImage: currentUser.attackImage,
-        classId,
-    }
-
-    console.log('starting game with user:', userData)
+    console.log('starting game with user:', currentUser)
     $.ajax({
         method: "PUT",
-        url: "/api/currentUser/" + classId,
-        data: userData
+        url: "/api/currentUser",
+        data: {
+            userId: currentUser.id,
+            classId, 
+        }
     }).then(function (data) {
-        console.log('navigating to board', data);
-        window.location.href = '/board.html';
+        if (data.status) {
+            console.log('navigating to board', data);
+            window.location.href = '/board.html';
+        } else {
+            console.log('got an error back from the server', data);
+        }
     })
 }
 
