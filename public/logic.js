@@ -3,53 +3,65 @@
 // ===============GAME LOGIC======================
 // populate with find all
 
-let enemies = []
-let enemyId = 0
+let enemies = [];
+let enemyId = 0;
+let currentUser;
 
 $("#attack-button").on("click", function() {
-    console.log("clicked the attack button!")
+    console.log("clicked the attack button!");
 })
 
 function getEnemies() {
     $.get("api/opponent/", function (data) {
-        enemies = data;
-        console.log(enemies)
-        renderEnemy(enemies, enemyId)
+        console.log(data)
+        if (data) {
+            enemies = data;
+            renderEnemy(enemyId);
+        }
     })
 
 }
 
-function renderEnemy(enemies, enemyId) {
-    console.log(enemies[enemyId])
-    {
-        const enemyCard =
-            `<div class="card">
-            <div>
-                <div class="card-header" id="${enemies[enemyId].id}">
-                    ${enemies[enemyId].name}
-                </div>
-                <div class="card-body">
-                    <img id="userclass-image" src="${enemies[enemyId].image}" alt="Product Image">
-        
-                </div>
-                <div class="form-group">
-                    <form class="form-row">
-                        <p class="hp" data-id="${enemies[enemyId].hp}">Health: ${enemies[enemyId].hp}</p>
-                        <p class="ap" data-id="${enemies[enemyId].ap}">Attack: ${enemies[enemyId].ap}</p>
-                        <p class="dp" data-id="${enemies[enemyId].dp}">Defense: ${enemies[enemyId].dp}</p>
-                        <div id="enemyHP" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100">100%</div>
-                    </form>
-                </div>
+function renderEnemy(enemyId) {
+    console.log(enemies[enemyId]);
+    const enemyCard =
+        `<div class="card">
+        <div>
+            <div class="card-header" id="${enemies[enemyId].id}">
+                ${enemies[enemyId].name}
             </div>
-        </div>`
-        $("#enemyHP").attr('style', 'width:' + enemies[enemyId].hp + '%')
-        $(".enemy-card").append(enemyCard)
-    }
+            <div class="card-body">
+                <img id="userclass-image" src="${enemies[enemyId].image}" alt="Product Image">
+    
+            </div>
+            <div class="form-group">
+                <form class="form-row">
+                    <p class="hp" data-id="${enemies[enemyId].hp}">Health: ${enemies[enemyId].hp}</p>
+                    <p class="ap" data-id="${enemies[enemyId].ap}">Attack: ${enemies[enemyId].ap}</p>
+                    <p class="dp" data-id="${enemies[enemyId].dp}">Defense: ${enemies[enemyId].dp}</p>
+                    <div id="enemyHP" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">100%</div>
+                </form>
+            </div>
+        </div>
+    </div>`;
+    $("#enemyHP").attr('style', 'width:' + enemies[enemyId].hp + '%');
+    $(".enemy-card").append(enemyCard);
 }
 
-function renderUser(currentUser) {
-    console.log(currentUser.id)
+function getCurrentUser() {
+    id = 1
+    $.get("api/currentUser/" + id, function (data) {
+        console.log(data)
+        if (data) {
+            currentUser = data;
+            renderUser();
+        }
+    })
+}
+
+function renderUser() {
+    //console.log(currentUser.id)
     {
         const userCard =
             `<div class="card">
@@ -58,7 +70,7 @@ function renderUser(currentUser) {
                     ${currentUser.name}
                 </div>
                 <div class="card-body">
-                    <img id="userclass-image" src="${currentUser.image}" alt="Product Image">
+                    <img id="userclass-image" src="${currentUser.image}" alt="player Image">
         
                 </div>
                 <div class="form-group">
@@ -74,89 +86,45 @@ function renderUser(currentUser) {
         </div>`
         $("#userHP").attr('style', 'width:' + currentUser.hp + '%')
         $(".user-card").append(userCard)
+        renderModal(); // FIXME method signature does not match
     }
 }
 
-function getCurrentUser() {
-    id = 1
-    $.get("api/currentUser/" + id, function (data) {
-        currentUser = data;
-        console.log(currentUser)
-        renderUser(currentUser)
-    })
+
+
+
+function renderModal(enemies, enemyId) {
+    $("#player-name").html(currentUser.name);
+    $("#player-image").html(`<img src="${currentUser.image}"`);
+    $("#opp-name").html(enemies[enemyId].name);
+    $("#player-image").html(`<img src="${enemies[enemyId].image}"`);
+    $("#MyModal").modal('show');
 }
 
-
-const renderModal = function () {
-    const modal = `   
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Time for Battle!</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card" id="player-card">
-                    <div class="card-content">
-                        <h3 id="player-name">${user.name}</h3>
-                        <img id="player-image" src="${user.class.image}" style="width:100%">
-                    </div>
-                    <div class="card-footer">
-                        <p id="player-role">Role: ${user.class.role}</p>
-                        <p id="player-des">Description: ${user.class.description}</p>
-                        <p id="stats"> Heath: ${user.class.hp} Attack Power: ${user.class.ap} Defense:
-                            ${user.class.dp}</p>
-                    </div>
-                </div>
-
-                <div class="card" id="opp-card">
-                    <div class="card-content">
-                        <h3 id="opp-name">${opponent.name}</h3>
-                        <img id="opp-image" src="${opponent.image}" style="width:100%">
-                    </div>
-                    <div class="card-footer">
-                        <p id="opp-des">Description: ${opponent.description}</p>
-                        <p id="opp-hp"> Health: ${opponent.hp}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning" id="startOver" data-dismiss="modal">Fight!</button>
-            </div>
-        </div>
-    </div>
-</div>`
-    $("#vsModal").modal();
-
-}
 
 //Battle Logic//
 
 let enemyAttacked;
 
 
-const Attack = function (Attacker, Defender) {
-    if (Attacker == current) {
+function Attack(Attacker, Defender) {
+    if (Attacker == current) { // FIXME 'current' is not defined anywhere
         enemyAttacked = false;
     }
     const atkSum = currentUser.ap + (Math.floor(Math.random() * 20)) - Defender.dp + (Math.floor(Math.random() * 20));
     Defender.hp -= atkSum;
 
-    battle();
+    battle(); // FIXME method signature does not match
 
 };
 
-const battle = function (currentUser, opponent) {
-
+function battle(opponent) {
     if (currentUser.hp <= 0) {
         currentUser.lives -= 1;
     } else if (currentUser.lives == 0) {
         (console.log("Game Over"))
     } else if (opponent.hp <= 0) {
-        levelUp(currentUser);
+        levelUp();
         console.log("You Win!")
     } else {
         if (!opponentAttacked) {
