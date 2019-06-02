@@ -107,6 +107,10 @@ function useAbility(attacker, defender) {
     }
 }
 
+function renderCurrentEnemy() {
+    renderEnemy()
+}
+
 function nextEnemy() {
     const nextEnemyId = enemyId + 1;
     if (nextEnemyId < enemies.length) {
@@ -124,12 +128,13 @@ function nextEnemy() {
 
 function checkStatus() {
     if (currentUser.hp <= 0) {
-        currentUser.lives -= 1;
+        currentUser.lives -= 1
+        endOfRoundMessage = "you lost. replay the same enemy"
+        renderEndOfRoundModal(endOfRoundMessage)
+        renderCurrentEnemy()
     } else if (currentUser.lives == 0) {
         console.log("Game Over");
         endOfRoundMessage = "Game Over!"
-        renderEndOfRoundModal(endOfRoundMessage)
-
         // TODO update the UI and end the game
 
     } else if (currentEnemy.hp <= 0) {
@@ -138,6 +143,10 @@ function checkStatus() {
         renderEndOfRoundModal(endOfRoundMessage)
         nextEnemy();   
     }
+}
+
+function refreshRound() {
+    // refresh the round
 }
 
 function levelUp() {
