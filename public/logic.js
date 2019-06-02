@@ -74,10 +74,6 @@ function getEntityCard(entity) {
     </div>`);
 }
 
-$(document).on("click", "#next-round", function () {
-    $("#end-round").modal("hide")
-    nextEnemy()
-})
 
 function renderEndOfRoundModal() {
     console.log("renderNedOfRoundMOdalFunction()")
@@ -86,7 +82,7 @@ function renderEndOfRoundModal() {
     $(".dp").text(`Defense: ${currentUser.dp}`)
     $(".round-message").text(`${endOfRoundMessage}`)
     $("#player-image").attr("src", currentUser.image); 
-    $("#end-round").modal("show");
+    $("#end-round").modal("toggle");
 }
 
 
@@ -111,6 +107,10 @@ function useAbility(attacker, defender) {
     }
 }
 
+function renderCurrentEnemy() {
+    renderEnemy()
+}
+
 function nextEnemy() {
     const nextEnemyId = enemyId + 1;
     if (nextEnemyId < enemies.length) {
@@ -128,20 +128,25 @@ function nextEnemy() {
 
 function checkStatus() {
     if (currentUser.hp <= 0) {
-        currentUser.lives -= 1;
+        currentUser.lives -= 1
+        endOfRoundMessage = "you lost. replay the same enemy"
+        renderEndOfRoundModal(endOfRoundMessage)
+        renderCurrentEnemy()
     } else if (currentUser.lives == 0) {
         console.log("Game Over");
         endOfRoundMessage = "Game Over!"
-        renderEndOfRoundModal(endOfRoundMessage)
-
         // TODO update the UI and end the game
 
     } else if (currentEnemy.hp <= 0) {
         levelUp();
-        // setTimeout(nextEnemy, 1000);
         endOfRoundMessage = "You Won! Click the button to move on to the next round!"
         renderEndOfRoundModal(endOfRoundMessage)
+        nextEnemy();   
     }
+}
+
+function refreshRound() {
+    // refresh the round
 }
 
 function levelUp() {
