@@ -1,173 +1,157 @@
-
-
 // ===============GAME LOGIC======================
-// populate with find all
 
 let enemies = [];
 let enemyId = 0;
+
 let currentUser;
+let currentEnemy;
 
-$("#attack-button").on("click", function() {
-    console.log("clicked the attack button!");
-})
-
-function getEnemies() {
-    $.get("api/opponent/", function (data) {
-        console.log(data)
+function loadCurrentUser() {
+    $.get("api/currentUser", function (data) {
+        console.log('retrieved the current user data:', data)
         if (data) {
-            enemies = data;
-            renderEnemy(enemyId);
+            currentUser = data;
+            currentUser.maxHp = currentUser.hp;
+
+            renderUser();
+            loadEnemies();
         }
     })
-
 }
 
-function renderEnemy(enemyId) {
-    console.log(enemies[enemyId]);
-    const enemyCard =
-        `<div class="card">
+function loadEnemies() {
+    $.get("api/opponent/", function (data) {
+        console.log('retrieved the enemy list', data)
+        if (data) {
+            enemies = data;
+            currentEnemy = enemies[enemyId];
+            currentEnemy.maxHp = currentEnemy.hp;
+
+            renderEnemy();
+        }
+    })
+}
+
+
+function renderUser() {
+    console.log('render user', currentUser);
+
+    const userCard = getEntityCard(currentUser);
+    $(".user-card").html(userCard);
+    $("#attack-button").html(`<img src="${currentUser.attackImage}"></img>`);
+}
+
+function renderEnemy() {
+    console.log('renderEnemy', currentEnemy);
+
+    const enemyCard = getEntityCard(currentEnemy);
+    $(".enemy-card").html(enemyCard);
+}
+
+function getEntityCard(entity) {
+    const alive = entity.hp > 0;
+    // TODO render differently if the entity is not alive
+
+    const percent = Math.floor((entity.hp * 100) / entity.maxHp);
+    return (
+    `<div class="card">
         <div>
-            <div class="card-header" id="${enemies[enemyId].id}">
-                ${enemies[enemyId].name}
+            <div class="card-header" id="${entity.id}">
+                ${entity.name}
             </div>
             <div class="card-body">
-                <img id="userclass-image" src="${enemies[enemyId].image}" alt="Product Image">
-    
+                <img id="userclass-image" src="${entity.image}" alt="Product Image">
             </div>
             <div class="form-group">
                 <form class="form-row">
-                    <p class="hp" data-id="${enemies[enemyId].hp}">Health: ${enemies[enemyId].hp}</p>
-                    <p class="ap" data-id="${enemies[enemyId].ap}">Attack: ${enemies[enemyId].ap}</p>
-                    <p class="dp" data-id="${enemies[enemyId].dp}">Defense: ${enemies[enemyId].dp}</p>
-                    <div id="enemyHP" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100">100%</div>
+                    <p class="hp">Health: ${entity.hp}</p>
+                    <p class="ap">Attack: ${entity.ap}</p>
+                    <p class="dp">Defense: ${entity.dp}</p>
+                    <div class="progress-bar" role="progressbar" style="width: ${percent}%;">${percent}%</div>
                 </form>
             </div>
         </div>
-    </div>`;
-    $("#enemyHP").attr('style', 'width:' + enemies[enemyId].hp + '%');
-    $(".enemy-card").append(enemyCard);
+    </div>`);
 }
-
-function getCurrentUser() {
-    id = 1
-    $.get("api/currentUser/" + id, function (data) {
-        console.log(data)
-        if (data) {
-            currentUser = data;
-            renderUser();
-        }
-    })
-}
-
-function renderUser() {
-    //console.log(currentUser.id)
-    {
-        const userCard =
-            `<div class="card">
-            <div>
-                <div class="card-header" id="${currentUser.id}">
-                    ${currentUser.name}
-                </div>
-                <div class="card-body">
-                    <img id="userclass-image" src="${currentUser.image}" alt="player Image">
-        
-                </div>
-                <div class="form-group">
-                    <form class="form-row">
-                        <p class="hp" data-id="${currentUser.hp}">Health: ${currentUser.hp}</p>
-                        <p class="ap" data-id="${currentUser.ap}">Attack: ${currentUser.ap}</p>
-                        <p class="dp" data-id="${currentUser.dp}">Defense: ${currentUser.dp}</p>
-                        <div id="userHP" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100">100%</div>
-                    </form>
-                </div>
-            </div>
-        </div>`
-        $("#userHP").attr('style', 'width:' + currentUser.hp + '%')
-        $(".user-card").append(userCard)
-        renderModal(); // FIXME method signature does not match
-    }
-}
-
-
-
-
-function renderModal(enemies, enemyId) {
-    $("#player-name").html(currentUser.name);
-    $("#player-image").html(`<img src="${currentUser.image}"`);
-    $("#opp-name").html(enemies[enemyId].name);
-    $("#player-image").html(`<img src="${enemies[enemyId].image}"`);
-    $("#MyModal").modal('show');
-}
-
 
 //Battle Logic//
 
-let enemyAttacked;
-
-
-function Attack(Attacker, Defender) {
-    if (Attacker == current) { // FIXME 'current' is not defined anywhere
-        enemyAttacked = false;
+function battle() {
+    if (currentUser.hp > 0 && currentEnemy.hp > 0) {
+        useAbility(currentUser, currentEnemy);
+        useAbility(currentEnemy, currentUser);
+        checkStatus();
+        renderUser();
+        renderEnemy();
     }
-    const atkSum = currentUser.ap + (Math.floor(Math.random() * 20)) - Defender.dp + (Math.floor(Math.random() * 20));
-    Defender.hp -= atkSum;
-
-    battle(); // FIXME method signature does not match
-
 };
 
-function battle(opponent) {
+function useAbility(attacker, defender) {
+    // TODO add back the randomness somehow
+    const atkSum = attacker.ap - defender.dp;
+    if (atkSum > 0) {
+        defender.hp = Math.max(0, defender.hp - atkSum);
+    }
+}
+
+function nextEnemy() {
+    const nextEnemyId = enemyId + 1;
+    if (nextEnemyId < enemies.length) {
+        enemyId = nextEnemyId;
+        currentEnemy = enemies[enemyId];
+        currentEnemy.maxHp = currentEnemy.hp;
+    } else {
+        console.log("You Win!")
+
+        // TODO update the UI and end the game
+    }
+
+    renderEnemy();
+}
+
+function checkStatus() {
     if (currentUser.hp <= 0) {
         currentUser.lives -= 1;
     } else if (currentUser.lives == 0) {
-        (console.log("Game Over"))
-    } else if (opponent.hp <= 0) {
-        levelUp();
-        console.log("You Win!")
-    } else {
-        if (!opponentAttacked) {
-            setTimeout(() => {
-                enemyAttacked = true;
-                attack(opponent, currentUser);
-            }, 7000);
-        }
-    }
+        console.log("Game Over");
 
+        // TODO update the UI and end the game
+
+    } else if (currentEnemy.hp <= 0) {
+        levelUp();
+        setTimeout(nextEnemy, 1000);
+    }
 }
 
 function levelUp() {
-     $.put("/api/currentUser"), function (req, res) {
-         db.currentUser.update({
-            ap: currentUser += 1,
-            dp: currentUser += 1,
-            hp: currentUser += 50,
-            commits: currentUser += 10
-         },
-             req.body,
-             {
-                 where: {
-                     id: req.body.id
-                 }
-            }).then(function (dbUser) {
-                res.json(dbUser);
-            });
+    currentUser.ap += 1;
+    currentUser.dp += 1;
+    currentUser.hp += 50;
+    currentUser.maxHp += 50;
 
-    };
+    // TODO the user beat someone, do we increase the commits now 
+    // or only if they beat the whole game? 
+    // this needs an api route to work on api-routes.js
 
- }
+    // $.ajax({
+    //     method: "PUT",
+    //     url: "/api/levelUp/" + currentUser.id,
+    //     data: {
+    //         currentUser,
+    //     }
+    // }).then(function (data) {
+    //     if (data.status) {
+    //         console.log('navigating to board', data);
+    //         window.location.href = '/board.html';
+    //     } else {
+    //         console.log('got an error back from the server', data);
+    //     }
+    // })
+}
 
+$("#attack-button").on("click", function() {
+    console.log("clicked the attack button!");
+    battle();
+})
 
-getCurrentUser()
-getEnemies()
-
-
-
-
-
-
-// $("#attack").click(function (event) {
-//     event.preventDefault();
-//     Attack(currentUser, opponent)
-// });
+loadCurrentUser()
