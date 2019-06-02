@@ -74,10 +74,6 @@ function getEntityCard(entity) {
     </div>`);
 }
 
-$(document).on("click", "#next-round", function () {
-    $("#end-round").modal("hide")
-    nextEnemy()
-})
 
 function renderEndOfRoundModal() {
     console.log("renderNedOfRoundMOdalFunction()")
@@ -86,7 +82,7 @@ function renderEndOfRoundModal() {
     $(".dp").text(`Defense: ${currentUser.dp}`)
     $(".round-message").text(`${endOfRoundMessage}`)
     $("#player-image").attr("src", currentUser.image); 
-    $("#end-round").modal("show");
+    $("#end-round").modal("toggle");
 }
 
 
@@ -138,9 +134,9 @@ function checkStatus() {
 
     } else if (currentEnemy.hp <= 0) {
         levelUp();
-        // setTimeout(nextEnemy, 1000);
         endOfRoundMessage = "You Won! Click the button to move on to the next round!"
         renderEndOfRoundModal(endOfRoundMessage)
+        nextEnemy();   
     }
 }
 
