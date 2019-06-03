@@ -20,6 +20,14 @@ function loadCurrentUser() {
     })
 }
 
+function renderUser() {
+    console.log('render user', currentUser);
+
+    const userCard = getEntityCard(currentUser);
+    $(".user-card").html(userCard);
+    $("#attack-button").html(`<img id="attack-pow" src="${currentUser.attackImage}"></img>`);
+}
+
 function loadEnemies() {
     $.get("api/opponent/", function (data) {
         console.log('retrieved the enemy list', data)
@@ -31,14 +39,6 @@ function loadEnemies() {
             renderEnemy();
         }
     })
-}
-
-function renderUser() {
-    console.log('render user', currentUser);
-
-    const userCard = getEntityCard(currentUser);
-    $(".user-card").html(userCard);
-    $("#attack-button").html(`<img id="attack-pow" src="${currentUser.attackImage}"></img>`);
 }
 
 function renderEnemy() {
@@ -130,7 +130,8 @@ function battle() {
     renderEnemy();
 
     if (runAgain) {
-        setTimeout(battle, 500);
+    setTimeout(battle, 500);
+       // console.log("Make you next move")
     } else {
         console.log('stopping battle');
         battleInProgress = false;
@@ -259,20 +260,23 @@ function attackAnimation() {
       animAttack.play();
 }
 
+loadCurrentUser()
+
+// Event listeners:
+
 $("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
     startBattle();
     attackAnimation();
 })
-$("#sleep-button").on("click", function () {
+$(document).on("click","#sleep-button", function () {
     console.log("clicked the sleep button!");
     sleepIn(currentUser)
-})
-$("#all-nighter-button").on("click", function () {
-    console.log("clicked the all nighter button!");
-    allNighter(currentUser, currentEnemy);
-})
+ })
+ $(document).on("click","#all-nighter-button", function () {
+    console.log("clicked the all-nighter-button!");
+    allNighter(currentUser, currentEnemy)
+ })
 
 
 
-loadCurrentUser()
