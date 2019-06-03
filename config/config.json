@@ -1,7 +1,11 @@
 {
     "development": {
       "username": "root",
+<<<<<<< HEAD
       "password": null,
+=======
+      "password": "#b3l0v3d1",
+>>>>>>> efdf64043089eda6ddebcdee11c222093a042375
       "database": "fsadb",
       "host": "127.0.0.1",
       "port": 3306,
