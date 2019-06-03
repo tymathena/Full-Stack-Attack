@@ -43,5 +43,14 @@
         "image": "/images/players/jacob.png",
         "description": "Fist to Five!",
         "attackImage": "/images/attacks/jacob.png"
+    },
+    {
+        "role": "Dropout",
+        "hp": 100,
+        "ap": -5,
+        "dp": -2,
+        "image": "/images/players/dropout.jpg",
+        "description": "*Sad Trombone*",
+        "attackImage": "/images/attacks/placeholder-circle.png"
     }
 ]
