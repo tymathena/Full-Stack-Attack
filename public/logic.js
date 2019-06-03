@@ -38,7 +38,7 @@ function renderUser() {
 
     const userCard = getEntityCard(currentUser);
     $(".user-card").html(userCard);
-    $("#attack-button").html(`<img src="${currentUser.attackImage}"></img>`);
+    $("#attack-button").html(`<img id="attack-pow" src="${currentUser.attackImage}"></img>`);
 }
 
 function renderEnemy() {
@@ -161,7 +161,9 @@ function checkStatus() {
         currentUser.lives -= 1
         if (currentUser.lives == 0) {
             console.log("Game Over");
+            //$("#player-image").attr("src", "/images/jacobSad.png")
             renderEndOfRoundModal("Game Over! You are unemployed!")
+            
         } else {
             renderEndOfRoundModal("You died! Get more coffee!")
             currentEnemy.hp = currentEnemy.maxHp;
@@ -201,9 +203,42 @@ function levelUp() {
     // })
 }
 
+function attackAnimation() {
+    const animAttack = anime({
+        targets: '#attack-button',
+        translateX: [
+          { value: 250, duration: 1000, delay: 500 },
+          { value: 0, duration: 1000, delay: 500 }
+        ],
+        // translateY: [
+        //   { value: -40, duration: 500 },
+        //   { value: 40, duration: 500, delay: 1000 },
+        //   { value: 0, duration: 500, delay: 1000 }
+        // ],
+        scaleX: [
+          { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+          { value: 1, duration: 900 },
+          { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+          { value: 1, duration: 900 }
+        ],
+        scaleY: [
+          { value: [1.75, 1], duration: 500 },
+          { value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+          { value: 1, duration: 450 },
+          { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+          { value: 1, duration: 450 }
+        ],
+        easing: 'easeOutElastic',
+        loop: false,
+        autoplay: false
+      });
+      animAttack.play();
+}
+
 $("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
     startBattle();
+    attackAnimation();
 })
 
 
