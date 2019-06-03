@@ -50,12 +50,10 @@ body {
     padding: 15px;
 }
 
-#attack-button {
-    position: fixed;
-    top: 100px;
-    left: 370px;
-    height: 100px;
-    width: 100px;
+#attack-pow {
+    width: 75%;
+    position: relative;
+    z-index: 100;
 }
 
 #player-image {
