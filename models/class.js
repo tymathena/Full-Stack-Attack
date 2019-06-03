@@ -21,6 +21,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 5
         },
+        special: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 10
+        },
         image: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -35,6 +40,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "oh dear"
+        },
+        isUser: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "true"
         }
     });
     Class.associate = function (models) {

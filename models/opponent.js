@@ -24,6 +24,11 @@ module.exports = function (sequelize, DataTypes) {
         description: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        isUser: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "false"
         }
     });
     return Opponent;

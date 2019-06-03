@@ -85,6 +85,7 @@ function createClassCard(classes) {
                             <p class="hp" data-id="${classes[i].hp}">Health: ${classes[i].hp}</p>
                             <p class="ap" data-id="${classes[i].ap}">Attack: ${classes[i].ap}</p>
                             <p class="dp" data-id="${classes[i].dp}">Defense: ${classes[i].dp}</p>
+                            <p class="special" data-id="${classes[i].dp}">Special: ${classes[i].special}</p>
                             <p class="description" data-id="${classes[i].description}">${classes[i].description}</p>
                             <button type="button" class="btn btn-warning btn-default select-user-${classes[i].id}">Select Character!</button>
                         </form>

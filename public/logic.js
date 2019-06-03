@@ -46,6 +46,7 @@ function renderEnemy() {
 
     const enemyCard = getEntityCard(currentEnemy);
     $(".enemy-card").html(enemyCard);
+    $(".false").html("")
 }
 
 function getEntityCard(entity) {
@@ -68,6 +69,11 @@ function getEntityCard(entity) {
                     <p class="ap">Attack: ${entity.ap}</p>
                     <p class="dp">Defense: ${entity.dp}</p>
                     <div class="progress-bar" role="progressbar" style="width: ${percent}%;">${percent}%</div>
+                    <div class="${entity.isUser}">
+                    <hr>
+                    <button id="all-nighter-button" type="button" class="btn btn-danger">All Nighter</button>
+                    <button id="sleep-button"type="button" class="btn btn-primary">Sleep In</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -92,6 +98,7 @@ function renderEndOfRoundModal(endOfRoundMessage) {
     $(".ap").text(`Attack: ${currentUser.ap}`)
     $(".dp").text(`Defense: ${currentUser.dp}`)
     $(".lives").text(`Lives: ${currentUser.lives}`)
+    $(".special").text(`Special moves: ${currentUser.special}`)
     $(".round-message").text(`${endOfRoundMessage}`)
     // $("#player-image").attr("src", currentUser.image); 
     $("#next-round").text(buttonText);
@@ -135,6 +142,21 @@ function useAbility(attacker, defender) {
     if (atkSum > 0) {
         defender.hp = Math.max(0, defender.hp - atkSum);
     }
+}
+
+function allNighter(attacker, defender) {
+    const atkSum = attacker.ap * 2 + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
+    if (atkSum > 0) {
+        defender.hp = Math.max(0, defender.hp - atkSum);
+    }
+    useAbility(defender, attacker)
+    useAbility(defender, attacker)
+    attacker.special--;
+}
+
+function sleepIn(player) {
+    player.hp += player.maxHp * 0.25;
+    player.special--;
 }
 
 function nextEnemy() {
@@ -241,6 +263,14 @@ $("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
     startBattle();
     attackAnimation();
+})
+$("#sleep-button").on("click", function () {
+    console.log("clicked the sleep button!");
+    sleepIn(currentUser)
+})
+$("#all-nighter-button").on("click", function () {
+    console.log("clicked the all nighter button!");
+    allNighter(currentUser, currentEnemy);
 })
 
 
