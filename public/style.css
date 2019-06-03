@@ -1,7 +1,7 @@
 body {
     font-family: 'Sriracha', cursive;
     background-color: black;
-  }
+}
 
 .role-cards {
     display: flex;
@@ -32,9 +32,49 @@ body {
     background-color: whitesmoke;
 }
 
+#char-image {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    max-height: auto;
+    position: relative;
+    vertical-align: middle;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.char-card {
+    max-width: 300px;
+    margin: 20px;
+    padding-top: 15px;
+    text-align: center;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    background-color: whitesmoke;
+}
+
+.stats-div {
+    display: inline-block;
+}
+
+.char-stats {
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.char-description {
+    clear: both;
+    text-align: center;
+    font-size: 16px;
+}
+
 #email, #password {
     width: 50%;
-
 }
 
 .login-submit, .create-submit {
@@ -53,6 +93,7 @@ body {
 .login {
     padding: 15px;
 }
+
 #attackDiv {
     position: relative;
     z-index: 3;
@@ -73,16 +114,14 @@ body {
 
 @media (min-width: 375px) and (orientation:portrait) {
     .user-card {
-         float: none;
-         width: 300px;
-         justify-content: center;   
+        float: none;
+        width: 300px;
+        justify-content: center;
     }
     .enemy-card {
         float: none;
         width: 300px;
-        justify-content: center;   
+        justify-content: center;
     }
-    #userclass-image {
-        width: 100px;
-    }
+
 }
