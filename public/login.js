@@ -14,6 +14,7 @@ function renderLogIn() {
             <input type="password" class="form-control" id="password" placeholder="Enter Password!">
         </div>
     </form>
+    <div class="incorrect-password"></div>
     <div class="text-center">
         <button type="submit" class="btn btn-primary col-12 login-submit" href="board.html">Login</button>
     </div>`
@@ -37,6 +38,8 @@ function tryLogInUser() {
                 renderClassCards()
             } else {
                 console.log("password does not match")
+                $(".incorrect-password").html(`<p style="color: red;">Incorrect Password. Please try again!</p>`)
+
             }
         } else {
             // create the user and assign to global variable
