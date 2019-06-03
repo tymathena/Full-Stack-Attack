@@ -58,6 +58,11 @@ body {
     width: 100px;
 }
 
+#player-image {
+    max-height: 300px;
+    margin: auto;
+}
+
 /* trying to make the game responsive on a phone in landscape and portrait mode - needs more work*/
 
 @media (min-width: 375px) and (orientation:portrait) {

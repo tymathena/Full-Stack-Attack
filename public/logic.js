@@ -5,6 +5,7 @@ let enemyId = 0;
 
 let currentUser;
 let currentEnemy;
+let battleInProgress;
 
 function loadCurrentUser() {
     $.get("api/currentUser", function (data) {
@@ -32,7 +33,6 @@ function loadEnemies() {
     })
 }
 
-
 function renderUser() {
     console.log('render user', currentUser);
 
@@ -49,9 +49,6 @@ function renderEnemy() {
 }
 
 function getEntityCard(entity) {
-    const alive = entity.hp > 0;
-    // TODO render differently if the entity is not alive
-
     const percent = Math.floor((entity.hp * 100) / entity.maxHp);
     return (
         `<div class="card">
@@ -79,11 +76,16 @@ function getEntityCard(entity) {
 
 function renderEndOfRoundModal(endOfRoundMessage) {
     console.log("renderNedOfRoundMOdalFunction()")
+    let redirectBackToLogin = false;
     let buttonText = 'Next Round';
     if (currentUser.lives <= 0) {
         buttonText = 'File for unemployment';
+        redirectBackToLogin = true;
     } else if (currentUser.hp <= 0) {
         buttonText = 'CAFFEINE BOOST!';
+    } else if (enemyId >= enemies.length) {
+        buttonText = 'Get PAID!'
+        redirectBackToLogin = true;
     }
 
     $(".hp").text(`Health: ${currentUser.hp}`)
@@ -94,20 +96,39 @@ function renderEndOfRoundModal(endOfRoundMessage) {
     $("#player-image").attr("src", currentUser.image); 
     $("#next-round").text(buttonText);
     $("#end-round").modal("toggle");
+
+    if (redirectBackToLogin) {
+        $("#next-round").on("click", function () {
+            window.location.href = '/index.html';
+        });
+    }
 }
 
 
 //Battle Logic//
 
-function battle() {
-    if (currentUser.hp > 0 && currentEnemy.hp > 0) {
-        useAbility(currentUser, currentEnemy);
-        useAbility(currentEnemy, currentUser);
-        checkStatus();
-        renderUser();
-        renderEnemy();
+function startBattle() {
+    if (!battleInProgress && currentUser.hp > 0 && currentEnemy.hp > 0) {
+        console.log('starting battle');
+        battleInProgress = true;
+        battle();
     }
 };
+
+function battle() {
+    useAbility(currentUser, currentEnemy);
+    useAbility(currentEnemy, currentUser);
+    const runAgain = checkStatus();
+    renderUser();
+    renderEnemy();
+
+    if (runAgain) {
+        setTimeout(battle, 500);
+    } else {
+        console.log('stopping battle');
+        battleInProgress = false;
+    }
+}
 
 function useAbility(attacker, defender) {
     const atkSum = attacker.ap + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
@@ -124,6 +145,7 @@ function nextEnemy() {
         currentEnemy.maxHp = currentEnemy.hp;
         renderEndOfRoundModal("You defeated the enemy! Another approaches!")
     } else {
+        enemyId = nextEnemyId;
         renderEndOfRoundModal("You Won! You now have a job!")
 
         // TODO update the UI and end the game
@@ -133,7 +155,9 @@ function nextEnemy() {
 }
 
 function checkStatus() {
+    let stillFighting = true;
     if (currentUser.hp <= 0) {
+        stillFighting = false;
         currentUser.lives -= 1
         if (currentUser.lives == 0) {
             console.log("Game Over");
@@ -144,13 +168,11 @@ function checkStatus() {
             currentUser.hp = currentUser.maxHp;
         }
     } else if (currentEnemy.hp <= 0) {
+        stillFighting = false;
         levelUp();
-        nextEnemy();   
+        nextEnemy();
     }
-}
-
-function refreshRound() {
-    // refresh the round
+    return stillFighting;
 }
 
 function levelUp() {
@@ -181,7 +203,7 @@ function levelUp() {
 
 $("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
-    battle();
+    startBattle();
 })
 
 
