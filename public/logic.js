@@ -93,7 +93,7 @@ function renderEndOfRoundModal(endOfRoundMessage) {
     $(".dp").text(`Defense: ${currentUser.dp}`)
     $(".lives").text(`Lives: ${currentUser.lives}`)
     $(".round-message").text(`${endOfRoundMessage}`)
-    $("#player-image").attr("src", currentUser.image); 
+    // $("#player-image").attr("src", currentUser.image); 
     $("#next-round").text(buttonText);
     $("#end-round").modal("toggle");
 
@@ -161,16 +161,18 @@ function checkStatus() {
         currentUser.lives -= 1
         if (currentUser.lives == 0) {
             console.log("Game Over");
-            //$("#player-image").attr("src", "/images/jacobSad.png")
+            $("#player-image").attr("src", "/images/jacobSad.png")
             renderEndOfRoundModal("Game Over! You are unemployed!")
             
         } else {
+            $("#player-image").attr("src", currentUser.image); 
             renderEndOfRoundModal("You died! Get more coffee!")
             currentEnemy.hp = currentEnemy.maxHp;
             currentUser.hp = currentUser.maxHp;
         }
     } else if (currentEnemy.hp <= 0) {
         stillFighting = false;
+        $("#player-image").attr("src", currentUser.image); 
         levelUp();
         nextEnemy();
     }
