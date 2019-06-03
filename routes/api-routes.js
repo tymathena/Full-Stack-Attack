@@ -87,8 +87,8 @@ module.exports = function (app) {
     app.get("/api/class/", function (req, res) {
         console.log("gets a class:" + req.body)
         db.Class.findAll()
-        .then(function (userClass) {
-            res.json(userClass);
-        })
+            .then(function (userClass) {
+                res.json(userClass);
+            })
     });
 }
