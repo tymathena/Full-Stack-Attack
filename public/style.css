@@ -1,7 +1,6 @@
 body {
     font-family: 'Sriracha', cursive;
-    background-image: url('images/laptop-burning.jpg');
-    background-repeat: none;
+    background-color: black;
   }
 
 .role-cards {
@@ -44,6 +43,11 @@ body {
 
 .container, .jumbotron {
     background-color: whitesmoke;
+}
+
+#board-container {
+    background-image: url("images/classBackground.jpg");
+    opacity: 75%;
 }
 
 .login {
