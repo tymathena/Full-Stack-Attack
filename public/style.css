@@ -49,6 +49,10 @@ body {
 .login {
     padding: 15px;
 }
+#attackDiv {
+    position: relative;
+    z-index: 3;
+}
 
 #attack-pow {
     width: 75%;
