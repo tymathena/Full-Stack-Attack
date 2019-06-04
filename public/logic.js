@@ -139,6 +139,10 @@ function allNighter(attacker, defender) {
     if (attacker.special > 0) {
         attacker.special--
         defender.hp = Math.max(0, defender.hp - atkSum);
+        context.resume().then(() => {
+            specialAttack.play();
+            console.log('Playback resumed successfully');
+        });
         checkStatus()
         renderUser()
         renderEnemy()
@@ -156,6 +160,10 @@ function allNighter(attacker, defender) {
 
 function sleepIn(player) {
     if (player.special > 0) {
+        context.resume().then(() => {
+            sleep.play();
+            console.log('Playback resumed successfully');
+        });
         player.special--
         console.log(player)
         player.hp += Math.floor((player.maxHp * 0.30))
@@ -255,8 +263,11 @@ loadCurrentUser()
 
 var context = new AudioContext();
 const basicAttack = new Audio();
+const specialAttack = new Audio();
+const sleep = new Audio();
+sleep.src = "./music/snore.wav"
 basicAttack.src = "./music/Basic-Attack.wav"
-
+specialAttack.src = "./music/Speacial-Attack.wav"
 
 // Event listeners:
 
