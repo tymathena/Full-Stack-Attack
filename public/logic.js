@@ -57,7 +57,7 @@ function getEntityCard(entity) {
             <h2 class="card-header" id="${entity.id}">
                 ${entity.name}
             </h2>
-            <div id="${entity.id}">
+            <div class="description" id="${entity.id}">
                 ${entity.description}
             </div>
             <div class="card-body">

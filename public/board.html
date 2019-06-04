@@ -22,7 +22,7 @@
                 <div id="attack-button"></div>
                 <div><img class="attack-image-1" src="images/attacks/allNighter.png"></div>
                 <div><img class="attack-image-2" src="images/attacks/sleep.png"></div>
-            
+
             </div>
             <div class="enemy-card col-xs-4 col-md-4"></div>
         </div>
@@ -38,20 +38,27 @@
                     </h3>
                 </div>
                 <div class="modal-body img-responsive">
-                    <img id="player-image" src="" alt="player-image">
-                    <p class="hp"></p>
-                    <p class="ap"></p>
-                    <p class="dp"></p>
-                    <p class="special"></p>
-                    <p class="lives"></p>
+                    <div class="row">
+                        <img class="col-xs-6"id="player-image" src="" alt="player-image">
+                        <div class="col-xs-6">
+                            <p class="hp"></p>
+                            <p class="ap"></p>
+                            <p class="dp"></p>
+                            <p class="special"></p>
+                            <p class="lives"></p>
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="next-round" data-dismiss="modal">Next Round</button>
+                    <button type="button" class="btn btn-default" id="next-round" data-dismiss="modal">Next
+                        Round</button>
                 </div>
             </div>
         </div>
     </div>`
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
     <script type="text/javascript" src="logic.js"></script>
     <script type="text/javascript" src="anime.js"></script>

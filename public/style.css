@@ -11,7 +11,7 @@ body {
 }
 
 .kick {
-    width: 300px;
+    width: 200px;
 }
 
 #userclass-image {
@@ -88,6 +88,7 @@ body {
 #board-container {
     background-image: url("images/classBackground.jpg");
     opacity: 75%;
+    background-size: 100%;
 }
 
 .login {
@@ -119,19 +120,47 @@ body {
 }
 
 
-
-/* trying to make the game responsive on a phone in landscape and portrait mode - needs more work*/
-
-@media (min-width: 375px) and (orientation:portrait) {
-    .user-card {
-        float: none;
-        width: 300px;
-        justify-content: center;
+@media (max-width: 813px) and (orientation:landscape) {
+    body {
+        max-height: 90%;
+        width: auto;
     }
-    .enemy-card {
-        float: none;
-        width: 300px;
-        justify-content: center;
+    .card {
+        margin-top: 5px;
+        margin-bottom: 0px;
     }
+    #userclass-image {
+        height: 95px;
+        width: auto;
+    }
+    .card-header {
+        margin-top: 0px;
+        font-size: 95%;
+    }
+    .description {
+        font-size: 80%;
+    }
+    #attack-pow {
+        margin-top: 94px;
+    }
+    #player-image {
+        max-height: 200px;
+        margin: auto;
+    }
+    .round-message {
+        font-size: 17px;
+    }
+  
+}
 
+@media (max-width: 813px) and (orientation:portrait) {
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
 }
