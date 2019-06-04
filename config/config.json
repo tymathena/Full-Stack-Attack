@@ -1,11 +1,7 @@
 {
     "development": {
       "username": "root",
-<<<<<<< HEAD
-      "password": "Spatula!1",
-=======
-      "password": "mouserug",
->>>>>>> 08a8e94bfdf08e525337966ace4a196de9026252
+      "password": "#b3l0v3d1",
       "database": "fsadb",
       "host": "127.0.0.1",
       "port": 3306,
