@@ -110,6 +110,16 @@ body {
     margin: auto;
 }
 
+.attack-image-2, .attack-image-1 {
+    width: 50%;
+    float: left;
+    position: relative;
+    z-index: 100;
+    
+}
+
+
+
 /* trying to make the game responsive on a phone in landscape and portrait mode - needs more work*/
 
 @media (min-width: 375px) and (orientation:portrait) {
