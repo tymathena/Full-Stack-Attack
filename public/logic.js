@@ -46,6 +46,7 @@ function renderEnemy() {
     const enemyCard = getEntityCard(currentEnemy);
     $(".enemy-card").html(enemyCard);
     $(".false").html("")
+    $(".special-false").html("")
 }
 
 function getEntityCard(entity) {
@@ -67,6 +68,7 @@ function getEntityCard(entity) {
                     <p class="hp">Health: ${entity.hp}</p>
                     <p class="ap">Attack: ${entity.ap}</p>
                     <p class="dp">Defense: ${entity.dp}</p>
+                    <p class="sp special-${entity.isUser}">Special: ${entity.special}</p>
                     <div class="progress-bar" role="progressbar" style="width: ${percent}%;">${percent}%</div>
                     <div class="${entity.isUser}">
                     <hr>
@@ -125,6 +127,10 @@ function useAbility(attacker, defender) {
     const atkSum = attacker.ap + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
     if (atkSum > 0) {
         defender.hp = Math.max(0, defender.hp - atkSum);
+        context.resume().then(() => {
+            basicAttack.play();
+            console.log('Playback resumed successfully');
+        });
         attackAnimation()
     }
 }
@@ -135,6 +141,10 @@ function allNighter(attacker, defender) {
     if (attacker.special > 0) {
         attacker.special--
         defender.hp = Math.max(0, defender.hp - atkSum);
+        context.resume().then(() => {
+            specialAttack.play();
+            console.log('Playback resumed successfully');
+        });
         checkStatus()
         renderUser()
         renderEnemy()
@@ -152,6 +162,10 @@ function allNighter(attacker, defender) {
 
 function sleepIn(player) {
     if (player.special > 0) {
+        context.resume().then(() => {
+            sleep.play();
+            console.log('Playback resumed successfully');
+        });
         player.special--
         console.log(player)
         player.hp += Math.floor((player.maxHp * 0.30))
@@ -324,6 +338,14 @@ initNightAnimation();
 initSleepAnimation();
 
 loadCurrentUser()
+
+var context = new AudioContext();
+const basicAttack = new Audio();
+const specialAttack = new Audio();
+const sleep = new Audio();
+sleep.src = "./music/snore.wav"
+basicAttack.src = "./music/Basic-Attack.wav"
+specialAttack.src = "./music/Speacial-Attack.wav"
 
 // Event listeners:
 
