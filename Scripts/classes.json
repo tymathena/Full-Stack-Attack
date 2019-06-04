@@ -14,7 +14,7 @@
         "ap": 3,
         "dp": 7,
         "image": "/images/players/backend.jpg",
-        "description": "With me nothing is impossible, but without me nothing is possible!",
+        "description": "Cant touch this!",
         "attackImage": "/images/attacks/backend.png"
     },
     {
@@ -23,7 +23,7 @@
         "ap": 5,
         "dp": 5,
         "image": "images/players/fullstack.jpg",
-        "description": "Board knowledge, vast power!",
+        "description": "Broad knowledge, vast power!",
         "attackImage": "/images/attacks/fullstack.png"
     },
     {
@@ -47,8 +47,8 @@
     {
         "role": "Dropout",
         "hp": 100,
-        "ap": -5,
-        "dp": -2,
+        "ap": 3,
+        "dp": 3,
         "image": "/images/players/dropout.png",
         "description": "*Sad Trombone*",
         "attackImage": "/images/attacks/placeholder-circle.png"
