@@ -13,7 +13,6 @@ function loadCurrentUser() {
         if (data) {
             currentUser = data;
             currentUser.maxHp = currentUser.hp;
-
             renderUser();
             loadEnemies();
         }
@@ -114,28 +113,12 @@ function renderEndOfRoundModal(endOfRoundMessage) {
 
 //Battle Logic//
 
-function startBattle() {
-    if (!battleInProgress && currentUser.hp > 0 && currentEnemy.hp > 0) {
-        console.log('starting battle');
-        battleInProgress = true;
-        battle();
-    }
-};
-
 function battle() {
     useAbility(currentUser, currentEnemy);
     useAbility(currentEnemy, currentUser);
-    const runAgain = checkStatus();
+    checkStatus();
     renderUser();
     renderEnemy();
-
-    if (runAgain) {
-    setTimeout(battle, 500);
-       // console.log("Make you next move")
-    } else {
-        console.log('stopping battle');
-        battleInProgress = false;
-    }
 }
 
 function useAbility(attacker, defender) {
@@ -146,18 +129,33 @@ function useAbility(attacker, defender) {
 }
 
 function allNighter(attacker, defender) {
-    const atkSum = attacker.ap * 2 + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
-    if (atkSum > 0) {
-        defender.hp = Math.max(0, defender.hp - atkSum);
-    }
-    useAbility(defender, attacker)
-    useAbility(defender, attacker)
-    attacker.special--;
+
+    const atkSum = attacker.ap + (Math.floor(Math.random() * 20) * 2) - defender.dp + (Math.floor(Math.random() * 20));
+    let attackerSpecial = attacker.special--
+    console.log(attackerSpecial)
+        if (attackerSpecial >= 0) {
+            defender.hp = Math.max(0, defender.hp - atkSum);
+            console.log(defender.hp)
+            checkStatus()
+            renderUser()
+            renderEnemy()
+            // useAbility(defender, attacker)
+            // useAbility(defender, attacker)
+            // checkStatus()
+        }
+        else if (attackerSpecial < 0) {
+            alert("you are out of special homie!")
+        }
+       
 }
 
 function sleepIn(player) {
-    player.hp += player.maxHp * 0.25;
+    
+    console.log(player)
+    player.hp += (player.maxHp * 0.25)
     player.special--;
+    useAbility(currentEnemy, currentUser);
+    renderUser()
 }
 
 function nextEnemy() {
@@ -180,26 +178,25 @@ function nextEnemy() {
 function checkStatus() {
     let stillFighting = true;
     if (currentUser.hp <= 0) {
-        stillFighting = false;
         currentUser.lives -= 1
         if (currentUser.lives == 0) {
             console.log("Game Over");
             $("#player-image").attr("src", "/images/jacobSad.png")
             renderEndOfRoundModal("Game Over! You are unemployed!")
-            
+
         } else {
-            $("#player-image").attr("src", currentUser.image); 
+            $("#player-image").attr("src", currentUser.image);
             renderEndOfRoundModal("You died! Get more coffee!")
             currentEnemy.hp = currentEnemy.maxHp;
             currentUser.hp = currentUser.maxHp;
         }
     } else if (currentEnemy.hp <= 0) {
         stillFighting = false;
-        $("#player-image").attr("src", currentUser.image); 
+        $("#player-image").attr("src", currentUser.image);
         levelUp();
         nextEnemy();
     }
-    return stillFighting;
+    // return stillFighting;
 }
 
 function levelUp() {
@@ -207,33 +204,14 @@ function levelUp() {
     currentUser.dp += 1;
     currentUser.hp += 50;
     currentUser.maxHp += 50;
-
-    // TODO the user beat someone, do we increase the commits now 
-    // or only if they beat the whole game? 
-    // this needs an api route to work on api-routes.js
-
-    // $.ajax({
-    //     method: "PUT",
-    //     url: "/api/levelUp/" + currentUser.id,
-    //     data: {
-    //         currentUser,
-    //     }
-    // }).then(function (data) {
-    //     if (data.status) {
-    //         console.log('navigating to board', data);
-    //         window.location.href = '/board.html';
-    //     } else {
-    //         console.log('got an error back from the server', data);
-    //     }
-    // })
 }
 
 function attackAnimation() {
     const animAttack = anime({
         targets: '#attack-button',
         translateX: [
-          { value: 250, duration: 1000, delay: 500 },
-          { value: 0, duration: 1000, delay: 500 }
+            { value: 250, duration: 1000, delay: 500 },
+            { value: 0, duration: 1000, delay: 500 }
         ],
         // translateY: [
         //   { value: -40, duration: 500 },
@@ -241,23 +219,23 @@ function attackAnimation() {
         //   { value: 0, duration: 500, delay: 1000 }
         // ],
         scaleX: [
-          { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
-          { value: 1, duration: 900 },
-          { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
-          { value: 1, duration: 900 }
+            { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+            { value: 1, duration: 900 },
+            { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+            { value: 1, duration: 900 }
         ],
         scaleY: [
-          { value: [1.75, 1], duration: 500 },
-          { value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
-          { value: 1, duration: 450 },
-          { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
-          { value: 1, duration: 450 }
+            { value: [1.75, 1], duration: 500 },
+            { value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+            { value: 1, duration: 450 },
+            { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+            { value: 1, duration: 450 }
         ],
         easing: 'easeOutElastic',
         loop: false,
         autoplay: false
-      });
-      animAttack.play();
+    });
+    animAttack.play();
 }
 
 loadCurrentUser()
@@ -266,17 +244,17 @@ loadCurrentUser()
 
 $("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
-    startBattle();
+    battle();
     attackAnimation();
 })
-$(document).on("click","#sleep-button", function () {
+$(document).on("click", "#sleep-button", function () {
     console.log("clicked the sleep button!");
     sleepIn(currentUser)
- })
- $(document).on("click","#all-nighter-button", function () {
+})
+$(document).on("click", "#all-nighter-button", function () {
     console.log("clicked the all-nighter-button!");
     allNighter(currentUser, currentEnemy)
- })
+})
 
 
 

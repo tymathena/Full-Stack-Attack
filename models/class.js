@@ -21,11 +21,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 5
         },
-        special: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue: 10
-        },
         image: {
             type: DataTypes.STRING,
             allowNull: false,
