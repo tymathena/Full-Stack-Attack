@@ -125,37 +125,43 @@ function useAbility(attacker, defender) {
     const atkSum = attacker.ap + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
     if (atkSum > 0) {
         defender.hp = Math.max(0, defender.hp - atkSum);
+        attackAnimation()
     }
 }
 
 function allNighter(attacker, defender) {
 
     const atkSum = attacker.ap + (Math.floor(Math.random() * 20) * 2) - defender.dp + (Math.floor(Math.random() * 20));
-    let attackerSpecial = attacker.special--
-    console.log(attackerSpecial)
-        if (attackerSpecial >= 0) {
-            defender.hp = Math.max(0, defender.hp - atkSum);
-            console.log(defender.hp)
-            checkStatus()
-            renderUser()
-            renderEnemy()
-            // useAbility(defender, attacker)
-            // useAbility(defender, attacker)
-            // checkStatus()
-        }
-        else if (attackerSpecial < 0) {
-            alert("you are out of special homie!")
-        }
-       
+    if (attacker.special > 0) {
+        attacker.special--
+        defender.hp = Math.max(0, defender.hp - atkSum);
+        checkStatus()
+        renderUser()
+        renderEnemy()
+        useAbility(defender, attacker)
+        useAbility(defender, attacker)
+        checkStatus()
+        renderUser()
+        renderEnemy()
+    }
+    else if (attacker.special == 0) {
+        alert("you are out of special homie!")
+    }
+
 }
 
 function sleepIn(player) {
-    
-    console.log(player)
-    player.hp += (player.maxHp * 0.25)
-    player.special--;
-    useAbility(currentEnemy, currentUser);
-    renderUser()
+    if (player.special > 0) {
+        player.special--
+        console.log(player)
+        player.hp += Math.floor((player.maxHp * 0.25))
+        player.maxHp += Math.floor((player.maxHp * 0.25))
+        //useAbility(currentEnemy, currentUser);
+        renderUser()
+    }
+    else if(player.special = 0){
+        alert("outta specials homie!")
+    }
 }
 
 function nextEnemy() {
@@ -245,7 +251,7 @@ loadCurrentUser()
 $("#attack-button").on("click", function () {
     console.log("clicked the attack button!");
     battle();
-    attackAnimation();
+    // attackAnimation();
 })
 $(document).on("click", "#sleep-button", function () {
     console.log("clicked the sleep button!");

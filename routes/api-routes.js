@@ -16,11 +16,11 @@ module.exports = function (app) {
 
 
     // GET route to see if the person logging in is a user already or not
-    app.get("/api/user/:id", function (req, res) {
+    app.get("/api/user/:name", function (req, res) {
         console.log("gets a current user", req.body)
         db.User.findOne({
             where: {
-                id: req.params.id,
+                name: req.params.name,
             }
         }).then(function (user) {
             res.json(user);
