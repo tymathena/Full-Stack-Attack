@@ -46,6 +46,7 @@ function renderEnemy() {
     const enemyCard = getEntityCard(currentEnemy);
     $(".enemy-card").html(enemyCard);
     $(".false").html("")
+    $(".special-false").html("")
 }
 
 function getEntityCard(entity) {
@@ -67,6 +68,7 @@ function getEntityCard(entity) {
                     <p class="hp">Health: ${entity.hp}</p>
                     <p class="ap">Attack: ${entity.ap}</p>
                     <p class="dp">Defense: ${entity.dp}</p>
+                    <p class="sp special-${entity.isUser}">Special: ${entity.special}</p>
                     <div class="progress-bar" role="progressbar" style="width: ${percent}%;">${percent}%</div>
                     <div class="${entity.isUser}">
                     <hr>
