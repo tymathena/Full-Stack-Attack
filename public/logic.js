@@ -261,6 +261,82 @@ function attackAnimation() {
     animAttack.play();
 }
 
+function initNightAnimation() {
+    const animAttack = anime({
+        targets: '.attack-image-1', 
+        scaleX: [{ value: 0, duration: 0}
+        ],
+        scaleY: [{ value: 0, duration: 0}
+        ],
+        loop: false,
+        autoplay: false
+    });
+    animAttack.play();
+}
+
+function allNightAnimation() {
+    const animAttack = anime({
+        targets: '.attack-image-1',
+        translateX: [
+          { value: 1, duration: 100, delay: 500 },
+          { value: 0, duration: 100, delay: 500 }
+        ],
+
+        scaleY: [
+            { value: 1, duration: 100 },
+            { value: [1.75, 1], duration: 500 },
+            { value: 2, duration: 50, delay: 100, easing: 'easeOutSine'},
+            { value: 1, duration: 450},
+            { value: 1.75, duration: 50, delay: 100, easing: 'easeOutSine'},
+            { value: 1, duration: 50 },
+            {value: 0, duration: 50 }
+        ],
+        loop: 1,
+        autoplay: false
+    });
+    animAttack.play();
+}
+
+
+function initSleepAnimation() {
+    const animAttack = anime({
+        targets: '.attack-image-2', 
+        scaleX: [{ value: 0, duration: 0}
+        ],
+        scaleY: [{ value: 0, duration: 0}
+        ],
+        loop: false,
+        autoplay: false
+    });
+    animAttack.play();
+}
+
+function sleepAnimation() {
+    const animAttack = anime({
+        targets: '.attack-image-2',
+        translateX: [
+          { value: 1, duration: 100, delay: 500 },
+          { value: 0, duration: 100, delay: 500 }
+        ],
+
+        scaleY: [
+            { value: 1, duration: 100 },
+            { value: [1.75, 1], duration: 500 },
+            { value: 2, duration: 50, delay: 100, easing: 'easeOutSine'},
+            { value: 1, duration: 450},
+            { value: 1.75, duration: 50, delay: 100, easing: 'easeOutSine'},
+            { value: 1, duration: 50 },
+            {value: 0, duration: 50 }
+        ],
+        loop: 1,
+        autoplay: false
+    });
+    animAttack.play();
+}
+
+initNightAnimation();
+initSleepAnimation();
+
 loadCurrentUser()
 
 var context = new AudioContext();
@@ -281,10 +357,13 @@ $("#attack-button").on("click", function () {
 $(document).on("click", "#sleep-button", function () {
     console.log("clicked the sleep button!");
     sleepIn(currentUser)
+    sleepAnimation()
+
 })
 $(document).on("click", "#all-nighter-button", function () {
     console.log("clicked the all-nighter-button!");
     allNighter(currentUser, currentEnemy)
+    allNightAnimation()
 })
 
 
