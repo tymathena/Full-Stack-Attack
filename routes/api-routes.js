@@ -53,11 +53,12 @@ module.exports = function (app) {
             }).then(function (classData) {
                 // merge the user data and class data so that the game can play
                 res.json({
-                    // take from user fino
+                    // take from user info
                     id: userData.dataValues.id,
                     name: userData.dataValues.name,
                     commits: userData.dataValues.commits,
                     lives: userData.dataValues.lives,
+                    special: userData.dataValues.special,
 
                     // take from class info
                     classId: classData.dataValues.id,

@@ -35,6 +35,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "oh dear"
+        },
+        isUser: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "true"
         }
     });
     Class.associate = function (models) {

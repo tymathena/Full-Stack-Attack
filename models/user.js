@@ -22,6 +22,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 0
         },
+        special: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 10
+        },
         lives: {
             type: DataTypes.INTEGER,
             allowNull: false,
