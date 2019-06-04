@@ -131,7 +131,7 @@ function useAbility(attacker, defender) {
 
 function allNighter(attacker, defender) {
 
-    const atkSum = (attacker.ap + 15 + (Math.floor(Math.random() * 20))*2) - defender.dp;
+    const atkSum = (attacker.ap + 30 + (Math.floor(Math.random() * 20))*2) - defender.dp;
     if (attacker.special > 0) {
         attacker.special--
         defender.hp = Math.max(0, defender.hp - atkSum);
@@ -211,7 +211,7 @@ function checkStatus() {
 function levelUp() {
     currentUser.ap += 1;
     currentUser.dp += 1;
-    currentUser.hp += 50;
+    currentUser.hp += Math.floor((currentUser.maxHp * 0.30));
     currentUser.maxHp += 50;
 }
 
