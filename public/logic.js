@@ -131,7 +131,7 @@ function useAbility(attacker, defender) {
 
 function allNighter(attacker, defender) {
 
-    const atkSum = attacker.ap + 15 + (Math.floor(Math.random() * 40)) - defender.dp;
+    const atkSum = (attacker.ap + 15 + (Math.floor(Math.random() * 20))*2) - defender.dp;
     if (attacker.special > 0) {
         attacker.special--
         defender.hp = Math.max(0, defender.hp - atkSum);
@@ -139,7 +139,7 @@ function allNighter(attacker, defender) {
         renderUser()
         renderEnemy()
         useAbility(defender, attacker)
-        useAbility(defender, attacker)
+        //useAbility(defender, attacker)
         checkStatus()
         renderUser()
         renderEnemy()
@@ -154,7 +154,7 @@ function sleepIn(player) {
     if (player.special > 0) {
         player.special--
         console.log(player)
-        player.hp += Math.floor((player.maxHp * 0.25))
+        player.hp += Math.floor((player.maxHp * 0.30))
         if(player.hp > player.maxHp){
             player.hp = player.maxHp
         }

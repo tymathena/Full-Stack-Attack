@@ -17,25 +17,25 @@
     },
     {
         "name": "HTML",
-        "hp": 100,
-        "ap": 5,
-        "dp": 5,
+        "hp": 80,
+        "ap": 8,
+        "dp": 2,
         "image": "./images/opponents/html.png",
         "description": "Hyper Traumatic Murder League!"
     },
     {
         "name": "CSS",
-        "hp": 125,
-        "ap": 6,
-        "dp": 6,
+        "hp": 100,
+        "ap": 9,
+        "dp": 3,
         "image": "./images/opponents/css.png",
         "description": "Killing you with style!"
     },
     {
         "name": "Bootstrap",
-        "hp": 150,
-        "ap": 7,
-        "dp": 7,
+        "hp": 125,
+        "ap": 9,
+        "dp": 5,
         "image": "./images/opponents/bootstrap.png",
         "description": "Time to flex-box the heavy weight champion!"
     },
@@ -49,9 +49,9 @@
     },
     {
         "name": "jQuery",
-        "hp": 200,
-        "ap": 9,
-        "dp": 9,
+        "hp": 75,
+        "ap": 16,
+        "dp": 2,
         "image": "./images/opponents/jquery.png",
         "description": "Prepare to be manipulated by your DOM!"
     },
@@ -65,25 +65,25 @@
     },
     {
         "name": "Node.js",
-        "hp": 250,
-        "ap": 11,
+        "hp": 550,
+        "ap": 4,
         "dp": 11,
         "image": "./images/opponents/node.png",
         "description": "npm i bruises!"
     },
     {
         "name": "Express.js",
-        "hp": 275,
-        "ap": 12,
+        "hp": 550,
+        "ap": 7,
         "dp": 12,
         "image": "./images/opponents/express.png",
         "description": "Hop on the pain train!"
     },
     {
         "name": "MySQL",
-        "hp": 300,
-        "ap": 13,
-        "dp": 13,
+        "hp": 600,
+        "ap": 8,
+        "dp": 15,
         "image": "./images/opponents/mysql.png",
         "description": "Im gonna make you SQL like a pig!"
     },
@@ -105,33 +105,33 @@
     },
     {
         "name": "Sequelize",
-        "hp": 375,
-        "ap": 16,
+        "hp": 600,
+        "ap": 10,
         "dp": 16,
         "image": "./images/opponents/sequelize.png",
         "description": "Player.DESTROY!"
     },
     {
         "name": "MongoDB",
-        "hp": 400,
-        "ap": 17,
+        "hp": 650,
+        "ap": 11,
         "dp": 17,
         "image": "./images/opponents/mongodb.png",
         "description": "404 Enemy Not Found!"
     },
     {
         "name": "React.js",
-        "hp": 425,
-        "ap": 18,
-        "dp": 18,
+        "hp": 300,
+        "ap": 30,
+        "dp": 5,
         "image": "./images/opponents/react.png",
-        "description": "Zuck You!"
+        "description": "You're at the end of your Lifecycle!"
     },
     {
         "name": "Job Interview",
-        "hp": 450,
-        "ap": 19,
-        "dp": 19,
+        "hp": 650,
+        "ap": 23,
+        "dp": 23,
         "image": "./images/opponents/interview.png",
         "description": "Entry Level Position - 3 Years Experience Required"
     }
