@@ -109,8 +109,13 @@ function createClassCard(classes) {
     roleCards.on('mouseenter', '.char-image-select', enterButton);
     roleCards.on('mouseleave', '.char-image-select', leaveButton);
 
-    function enterButton(e) { animateButton(e, 1.2, 800, 400) };
-    function leaveButton(e) { animateButton(e, 1.0, 600, 300) };
+    function enterButton(e) {
+        animateButton(e, 1.2, 800, 400)
+    };
+
+    function leaveButton(e) {
+        animateButton(e, 1.0, 600, 300)
+    };
 
     const animateButton = function (e, scale, duration, elasticity) {
         anime.remove(e.target);
@@ -135,6 +140,7 @@ function startGame(classId) {
         }
     }).then(function (data) {
         if (data.status) {
+            music.pause();
             console.log('navigating to board', data);
             window.location.href = '/board.html';
         } else {
@@ -146,12 +152,15 @@ function startGame(classId) {
 // login animation test 
 
 
-
-
-
-
-
 renderLogIn()
+var context = new AudioContext();
+const music = new Audio();
+music.src = "./music/charTunes.mp3"
+
+context.resume().then(() => {
+    music.play();
+    console.log('Playback resumed successfully');
+});
 
 $(".login-submit").on("click", function () {
     console.log("click char select")

@@ -125,6 +125,10 @@ function useAbility(attacker, defender) {
     const atkSum = attacker.ap + (Math.floor(Math.random() * 20)) - defender.dp + (Math.floor(Math.random() * 20));
     if (atkSum > 0) {
         defender.hp = Math.max(0, defender.hp - atkSum);
+        context.resume().then(() => {
+            basicAttack.play();
+            console.log('Playback resumed successfully');
+        });
         attackAnimation()
     }
 }
@@ -248,6 +252,11 @@ function attackAnimation() {
 }
 
 loadCurrentUser()
+
+var context = new AudioContext();
+const basicAttack = new Audio();
+basicAttack.src = "./music/Basic-Attack.wav"
+
 
 // Event listeners:
 
