@@ -131,7 +131,7 @@ function useAbility(attacker, defender) {
 
 function allNighter(attacker, defender) {
 
-    const atkSum = attacker.ap + (Math.floor(Math.random() * 20) * 2) - defender.dp + (Math.floor(Math.random() * 20));
+    const atkSum = attacker.ap + 15 + (Math.floor(Math.random() * 40)) - defender.dp;
     if (attacker.special > 0) {
         attacker.special--
         defender.hp = Math.max(0, defender.hp - atkSum);
@@ -155,11 +155,14 @@ function sleepIn(player) {
         player.special--
         console.log(player)
         player.hp += Math.floor((player.maxHp * 0.25))
-        player.maxHp += Math.floor((player.maxHp * 0.25))
+        if(player.hp > player.maxHp){
+            player.hp = player.maxHp
+        }
+        //player.maxHp += Math.floor((player.maxHp * 0.25))
         //useAbility(currentEnemy, currentUser);
         renderUser()
     }
-    else if(player.special = 0){
+    else if(player.special == 0){
         alert("outta specials homie!")
     }
 }
