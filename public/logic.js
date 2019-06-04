@@ -76,7 +76,7 @@ function getEntityCard(entity) {
                 </form>
             </div>
         </div>
-    </div>`);
+    </div>`)
 }
 
 function renderEndOfRoundModal(endOfRoundMessage) {
