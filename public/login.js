@@ -70,59 +70,57 @@ function renderClassCards() {
 }
 
 function createClassCard(classes) {
-    for (let i = 0; i < classes.length; i++) {
+
+    classes.forEach(classes => {
+
         const userClassCard =
             `<div class="col-lg-4 char-card">
                 <div>
                     <div class="card-body">
-                        <img class="select-user-${classes[i].id} char-image-select"id="char-image" data-id="${classes[i].id} "src="${classes[i].image}" alt="Product Image">
+                        <img class="select-user-${classes.id} char-image-select"id="char-image" data-id="${classes.id} "src="${classes.image}" alt="Product Image">
                     </div>
                     <br>
-                    <h4 class="card-header" id="${classes[i].id}">
-                    ${classes[i].role}
+                    <h4 class="card-header" id="${classes.id}">
+                    ${classes.role}
                     </h4>
                     <div class="form-group">
                         <form class="form-row">
                         <div class="stats-div">
-                            <p class="hp char-stats" data-id="${classes[i].hp}">Health: ${classes[i].hp}</p>
-                            <p class="ap char-stats" data-id="${classes[i].ap}">Attack: ${classes[i].ap}</p>
-                            <p class="dp char-stats" data-id="${classes[i].dp}">Defense: ${classes[i].dp}</p>
+                            <p class="hp char-stats" data-id="${classes.hp}">Health: ${classes.hp}</p>
+                            <p class="ap char-stats" data-id="${classes.ap}">Attack: ${classes.ap}</p>
+                            <p class="dp char-stats" data-id="${classes.dp}">Defense: ${classes.dp}</p>
                         </div>  
-                            <p class="description char-description" data-id="${classes[i].description}">${classes[i].description}</p>
+                            <p class="description char-description" data-id="${classes.description}">${classes.description}</p>
                           
                         </form>
                     </div>
                 </div>
             </div>`
         $(".role-cards").append(userClassCard)
-        $(`.select-user-${classes[i].id}`).on("click", function (e) {
+
+        $(`.select-user-${classes.id}`).on("click", function (e) {
             e.preventDefault()
-            console.log('character selected', classes[i].id)
-            startGame(classes[i].id)
+            console.log('character selected', classes.id)
+            startGame(classes.id)
         })
+    })
 
+    const roleCards = $(".role-cards");
+    roleCards.on('mouseenter', '.char-image-select', enterButton);
+    roleCards.on('mouseleave', '.char-image-select', leaveButton);
 
-        
-        var charImage = document.querySelector('.char-image-select');
+    function enterButton(e) { animateButton(e, 1.2, 800, 400) };
+    function leaveButton(e) { animateButton(e, 1.0, 600, 300) };
 
-        function animateButton(scale, duration, elasticity) {
-            anime.remove(charImage);
-            anime({
-                targets: charImage,
-                scale: scale,
-                duration: duration,
-                elasticity: elasticity
-            });
-        }
-
-        charImage.addEventListener('mouseenter', enterButton, false);
-        charImage.addEventListener('mouseleave', leaveButton, false);
-        function enterButton() { animateButton(1.2, 800, 400) };
-        function leaveButton() { animateButton(1.0, 600, 300) };
-
-
+    const animateButton = function (e, scale, duration, elasticity) {
+        anime.remove(e.target);
+        anime({
+            targets: e.target,
+            scale: scale,
+            duration: duration,
+            elasticity: elasticity
+        });
     }
-
 }
 
 
