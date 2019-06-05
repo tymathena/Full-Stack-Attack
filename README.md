@@ -60,55 +60,54 @@ V1.0
 ## Opponents You Will Battle
 * $10,000 Dollars
 * "Your initial barrier of entry: Tuition!"
-![](./public/images/opponents/dollars.png)
+
 * Git
 * "Oh Shit, Git! Prepare to be version controlled!"
-![](./public/images/opponents/git.png)
+
 * HTML
 * "Hyper Traumatic Murder League!"
-![](./public/images/opponents/html.png)
+
 * CSS
 * "Killing you with style!"
-![](./public/images/opponents/css.png)
+
 * Bootstrap
 * "Time to flex-box the heavy weight champion!"
-![](./public/images/opponents/bootstrap.png)
+
 * JavaScript
 * "Maim || Kill"
-![](./public/images/opponents/javascript.png)
+
 * jQuery
 * "Prepare to be manipulated by your DOM!"
-![](./public/images/opponents/jquery.png)
+
 * Whiteboarding
 * "Time is running out......!"
-![](./public/images/opponents/whiteboard.png)
+
 * Node.js
 * "npm i bruises!"
-![](./public/images/opponents/node.png)
+
 * Express.js
 * "Hop on the pain train!"
-![](./public/images/opponents/express.png)
+
 * MySQL
 * "Im gonna make you SQL like a pig!"
-![](./public/images/opponents/mysql.png)
+
 * Group Projects
 * "Im the MVP!"
-![](./public/images/opponents/group.png)
+
 * GitHub Merge Conflicts
 * "No I'm the MVP! Git push -f origin master"
-![](./public/images/opponents/mergeConflict.png)
+
 * Sequelize
 * "Player.DESTROY!"
-![](./public/images/opponents/sequelize.png)
+
 * MongoDB
 * "404 Enemy Not Found!"
-![](./public/images/opponents/mongodb.png)
+
 * React.js
 * "You're at the end of your Lifecycle!"
-![](./public/images/opponents/react.png)
+
 * Job Interview
 * "Entry Level Position - 3 Years Experience Required"
-![](./public/images/opponents/interview.png)
 
 ## Deployment
 
