@@ -155,14 +155,21 @@ function startGame(classId) {
 renderLogIn()
 var context = new AudioContext();
 const music = new Audio();
-music.src = "./music/charTunes.mp3"
+music.src = "./music/charTunes.mp3";
 
-context.resume().then(() => {
-    music.play();
-    console.log('Playback resumed successfully');
+$("#un-mute").on("click", function () {
+    if (music.paused) {
+
+
+        context.resume().then(() => {
+            music.play();
+            console.log('Playback resumed successfully');
+        })
+    }
+    else{
+        context.resume().then(() => {
+            music.pause();
+            console.log('Playback resumed successfully');
+        })
+    }
 });
-
-$(".login-submit").on("click", function () {
-    console.log("click char select")
-    tryLogInUser()
-})
