@@ -176,7 +176,7 @@ function allNighter(attacker, defender) {
         renderEnemy()
     }
     else if (attacker.special == 0) {
-        alert("you are out of special homie!")
+        alert("You are out of specials!")
     }
 
 }
@@ -198,7 +198,7 @@ function sleepIn(player) {
         renderUser()
     }
     else if(player.special == 0){
-        alert("outta specials homie!")
+        alert("You are out of specials!")
     }
 }
 
