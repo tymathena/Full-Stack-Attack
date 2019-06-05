@@ -84,15 +84,33 @@ function getEntityCard(entity) {
 function renderEndOfRoundModal(endOfRoundMessage) {
     console.log("renderNedOfRoundMOdalFunction()")
     let redirectBackToLogin = false;
-    let buttonText = 'Next Round';
+    let buttonText;
     if (currentUser.lives <= 0) {
         buttonText = 'File for unemployment';
+        context.resume().then(() => {
+            lose.play();
+            console.log('Playback resumed successfully');
+        });
         redirectBackToLogin = true;
     } else if (currentUser.hp <= 0) {
         buttonText = 'CAFFEINE BOOST!';
+        context.resume().then(() => {
+            death.play();
+            console.log('Playback resumed successfully');
+        });
     } else if (enemyId >= enemies.length) {
         buttonText = 'Get PAID!'
+        context.resume().then(() => {
+            winGame.play();
+            console.log('Playback resumed successfully');
+        });
         redirectBackToLogin = true;
+    } else {
+        context.resume().then(() => {
+            winRound.play();
+            console.log('Playback resumed successfully');
+        });
+        buttonText = 'Next Round';
     }
 
     $(".hp").text(`Health: ${currentUser.hp}`)
@@ -343,7 +361,14 @@ var context = new AudioContext();
 const basicAttack = new Audio();
 const specialAttack = new Audio();
 const sleep = new Audio();
-sleep.src = "./music/snore.wav"
+const lose = new Audio();
+const death = new Audio();
+const winRound = new Audio();
+const winGame = new Audio();
+winGame.src = "./music/applause.wav"
+winRound.src = "./music/woohoo.wav"
+death.src = "./music/death.wav"
+lose.src = "./music/lose.wav"
 basicAttack.src = "./music/Basic-Attack.wav"
 specialAttack.src = "./music/Speacial-Attack.wav"
 
