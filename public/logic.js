@@ -370,6 +370,7 @@ const winRound = new Audio();
 const winGame = new Audio();
 const battleMusic = new Audio();
 battleMusic.src = "./music/battleTunes.mp3"
+battleMusic.loop = true;
 winGame.src = "./music/applause.wav"
 winRound.src = "./music/woohoo.wav"
 death.src = "./music/death.wav"
