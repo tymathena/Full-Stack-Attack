@@ -1,7 +1,7 @@
 body {
     font-family: 'Sriracha', cursive;
     background-color: black;
-    margin-top: 166px;
+    
 }
 
 .role-cards {
@@ -90,6 +90,7 @@ body {
     background-image: url("images/classBackground.jpg");
     opacity: 75%;
     background-size: 100%;
+    margin-top: 127px;
 }
 
 .login {
@@ -121,10 +122,25 @@ body {
     z-index: 100;
 }
 
+@media (max-height: 610px) {
+    #board-container {
+        margin-top: 15px;
+    }
+}
+
+@media (max-height: 685px) {
+    #board-container {
+        margin-top: 50px;
+    }
+}
+
 @media (max-width: 992px) {
     body {
         max-height: 100%;
         width: auto;
+        
+    }
+    #board-container {
         margin-top: 115px;
     }
     .card {
