@@ -58,55 +58,55 @@ V1.0
 ![](./public/images/opponents/jacob.png)
 
 ## Opponents You Will Battle
-# $10,000 Dollars
+### $10,000 Dollars
 * "Your initial barrier of entry: Tuition!"
 
-# Git
+### Git
 * "Oh Shit, Git! Prepare to be version controlled!"
 
-# HTML
+### HTML
 * "Hyper Traumatic Murder League!"
 
-# CSS
+### CSS
 * "Killing you with style!"
 
-# Bootstrap
+### Bootstrap
 * "Time to flex-box the heavy weight champion!"
 
-# JavaScript
+### JavaScript
 * "Maim || Kill"
 
-# jQuery
+### jQuery
 * "Prepare to be manipulated by your DOM!"
 
-# Whiteboarding
+### Whiteboarding
 * "Time is running out......!"
 
-# Node.js
+### Node.js
 * "npm i bruises!"
 
-# Express.js
+### Express.js
 * "Hop on the pain train!"
 
-# MySQL
+### MySQL
 * "Im gonna make you SQL like a pig!"
 
-# Group Projects
+### Group Projects
 * "Im the MVP!"
 
-# GitHub Merge Conflicts
+### GitHub Merge Conflicts
 * "No I'm the MVP! Git push -f origin master"
 
-# Sequelize
+### Sequelize
 * "Player.DESTROY!"
 
-# MongoDB
+### MongoDB
 * "404 Enemy Not Found!"
 
-# React.js
+### React.js
 * "You're at the end of your Lifecycle!"
 
-# Job Interview
+### Job Interview
 * "Entry Level Position - 3 Years Experience Required"
 
 ## Deployment
