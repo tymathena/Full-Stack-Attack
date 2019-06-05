@@ -72,8 +72,8 @@ function getEntityCard(entity) {
                     <div class="progress-bar" role="progressbar" style="width: ${percent}%;">${percent}%</div>
                     <div class="${entity.isUser}">
                     <hr>
-                    <button id="all-nighter-button" type="button" class="btn btn-danger">All Nighter</button>
-                    <button id="sleep-button"type="button" class="btn btn-primary">Sleep In</button>
+                    <button id="all-nighter-button" type="button" class="btn btn-danger btn-default">All Nighter</button>
+                    <button id="sleep-button"type="button" class="btn btn-primary btn-default">Sleep In</button>
                     </div>
                 </form>
             </div>
