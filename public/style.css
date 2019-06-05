@@ -1,6 +1,7 @@
 body {
     font-family: 'Sriracha', cursive;
     background-color: black;
+    margin-top: 166px;
 }
 
 .role-cards {
@@ -104,6 +105,8 @@ body {
     width: 75%;
     position: relative;
     z-index: 100;
+    left: 37px;
+    top: 94px;
 }
 
 #player-image {
@@ -116,14 +119,29 @@ body {
     float: left;
     position: relative;
     z-index: 100;
-    
 }
 
+@media (max-width: 992px) {
+    body {
+        max-height: 100%;
+        width: auto;
+        margin-top: 115px;
+    }
+    .card {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    #userclass-image {
+        height: 75px;
+        width: auto;
+    }
+}
 
 @media (max-width: 813px) and (orientation:landscape) {
     body {
         max-height: 90%;
         width: auto;
+        margin-top: 0;
     }
     .card {
         margin-top: 5px;
@@ -137,11 +155,12 @@ body {
         margin-top: 0px;
         font-size: 95%;
     }
+    .modal-header {
+        padding: 0;
+        padding-left: 15px;
+    }
     .description {
         font-size: 80%;
-    }
-    #attack-pow {
-        margin-top: 94px;
     }
     #player-image {
         max-height: 200px;
@@ -150,7 +169,6 @@ body {
     .round-message {
         font-size: 17px;
     }
-  
 }
 
 @media (max-width: 813px) and (orientation:portrait) {
