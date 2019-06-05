@@ -173,3 +173,7 @@ $("#un-mute").on("click", function () {
         })
     }
 });
+$(".login-submit").on("click", function () {
+    console.log("click char select")
+    tryLogInUser()
+ });
