@@ -1,43 +1,114 @@
 # Full Stack Attack 
 
-Get ready for a riveting journey through a full stack development bootcamp in this turn based RPG. Choose your character, and battle new technologies in a series of rounds. Earn commits every time you defeat a new enemy, and unlock exciting new characters in the store. Lose commits every time you are defeated by a new technology. 
+Get ready for a riveting journey through a full stack development bootcamp in this turn based RPG. The user logs in and then selects a premade role to play that is supplied by the database. The chosen role assigns the user a set number of attributes like Health, Attack, Defense and Specials. The user battles against one enemy at a time who also has a set number of attributes. The user battles through 17 rounds each with a unique enemy and only then wins the game.
 
 ## Getting Started
 
-* First, pick a character
 * Login if you are already a user, or create a new user profile if you are a new user. 
-* Once you login, or create your character the first battle will begin!
-* Use the attack button to attack the new technology. 
-* Use the bonus button to add strength to your attack.
-* Most importantly, have fun playing!
+* Pick a character to play as. 
+* Once you pick your character the first battle will begin!
+* Use the Attack button to use a regular attack on the new technology. 
+* Use the All Nighter button to add strength to your attack. This is a special attack!
+* Use the Sleep-In button to add to your overall health. This is a special attack!
+* You can only have 10 special attacks, so use them wisely. 
+
+## Built With
+
+* [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
+* [jQuery](https://api.jquery.com/)
+* [Node.js](https://nodejs.org/en/docs/)
+* [Express.js](https://expressjs.com/en/starter/installing.html)
+* [Sequelize](http://docs.sequelizejs.com/)
+* [MySQL](https://dev.mysql.com/doc/)
+* [Anime.js](https://animejs.com/documentation/)
+
+## Authors
+
+* Anna Perkins  
+* Taylor Wood
+* Tyler Mathena
+* Alex Eversbusch
+
+## Version
+
+V1.0
+
+## What we learned from Full Stack Attack
+* By defining a scope which seemed attainable in less time than the allowed time for the project, we were able to spend more time on animations, sound effects, and front-end styling. Most importantly we gave ourselves plenty of time to deploy, and make small tweaks to the player stats and game battle logic in order to make it more challenging and fun.       
+
+## What's Next for Full Stack Attack?
+* Improve UI for all mobile devices. The current UI is tailored to landscape mode on an iPhoneX. 
+* Update player stats in the database, and provide more difficult versions of the game for stronger players to play through. 
+* Allow players to buy more lives and more special attacks in a store. 
+* Allow players to add their own picture and make their own profile. 
+* Allow for deletion of profile. 
+* Encripted login system using bcrypt or similar. 
 
 ## Characters
 
 * Full Stack Developer 
+![](./public/images/opponents/fullstack.jpg)
 * Front End Developer
+![](./public/images/opponents/frontend.jpg)
 * Back End Developer 
-* Unlock - Teaching Assistant
-* Unlock - Instructor
+![](./public/images/opponents/backend.jpg)
+* Teaching Assistant
+![](./public/images/opponents/ta.png)
+* Instructor
+![](./public/images/opponents/jacob.png)
 
 ## Opponents You Will Battle
-
 * $10,000 Dollars
+* "Your initial barrier of entry: Tuition!"
+![](./public/images/opponents/dollars.png)
 * Git
+* "Oh Shit, Git! Prepare to be version controlled!"
+![](./public/images/opponents/git.png)
 * HTML
+* "Hyper Traumatic Murder League!"
+![](./public/images/opponents/html.png)
 * CSS
+* "Killing you with style!"
+![](./public/images/opponents/css.png)
 * Bootstrap
+* "Time to flex-box the heavy weight champion!"
+![](./public/images/opponents/bootstrap.png)
 * JavaScript
+* "Maim || Kill"
+![](./public/images/opponents/javascript.png)
 * jQuery
+* "Prepare to be manipulated by your DOM!"
+![](./public/images/opponents/jquery.png)
 * Whiteboarding
+* "Time is running out......!"
+![](./public/images/opponents/whiteboard.png)
 * Node.js
+* "npm i bruises!"
+![](./public/images/opponents/node.png)
 * Express.js
+* "Hop on the pain train!"
+![](./public/images/opponents/express.png)
 * MySQL
+* "Im gonna make you SQL like a pig!"
+![](./public/images/opponents/mysql.png)
 * Group Projects
+* "Im the MVP!"
+![](./public/images/opponents/group.png)
 * GitHub Merge Conflicts
+* "No I'm the MVP! Git push -f origin master"
+![](./public/images/opponents/mergeConflict.png)
 * Sequelize
+* "Player.DESTROY!"
+![](./public/images/opponents/sequelize.png)
 * MongoDB
+* "404 Enemy Not Found!"
+![](./public/images/opponents/mongodb.png)
 * React.js
+* "You're at the end of your Lifecycle!"
+![](./public/images/opponents/react.png)
 * Job Interview
+* "Entry Level Position - 3 Years Experience Required"
+![](./public/images/opponents/interview.png)
 
 ## Deployment
 
@@ -48,9 +119,10 @@ This app is deployed using heroku and jawsDB.
 * [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 * [jQuery](https://api.jquery.com/)
 * [Node.js](https://nodejs.org/en/docs/)
-* [Exress.js](https://expressjs.com/en/starter/installing.html)
+* [Express.js](https://expressjs.com/en/starter/installing.html)
 * [Sequelize](http://docs.sequelizejs.com/)
 * [MySQL](https://dev.mysql.com/doc/)
+* [Anime.js](https://animejs.com/documentation/)
 
 ## Authors
 
@@ -64,5 +136,28 @@ This app is deployed using heroku and jawsDB.
 V1.0
 
 ## Screenshots
+## Log In
+![](./public/images/Screenshots/loginpage.png)
+## Choose Character
+![](./public/images/Screenshots/choosecharpage.png)
+## Attack!
+![](./public/images/Screenshots/regattackpage.png)
+## All-Nighter!
+![](./public/images/Screenshots/allnighterpage.png)
+## Sleep-In!
+![](./public/images/Screenshots/sleepinpage.png)
+## Next Round Modal
+![](./public/images/Screenshots/nextroundpage.png)
+## Player Dead (But Not Out Of Lives) Modal
+![](./public/images/Screenshots/deadpage.png)
+## Game Over Page
+![](./public/images/Screenshots/gameoverpage.png)
+## Game Win Page
+![](./public/images/Screenshots/winpage.png)
+
+
+
+
+
 
 
