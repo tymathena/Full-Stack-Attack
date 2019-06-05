@@ -123,11 +123,14 @@ function renderEndOfRoundModal(endOfRoundMessage) {
     $("#next-round").text(buttonText);
     $("#end-round").modal("toggle");
 
-    if (redirectBackToLogin) {
-        $("#next-round").on("click", function () {
+    $("#next-round").on("click", function () {
+        if (redirectBackToLogin) {
+            context.resume().then(() => {
+                battleMusic.play();
+            });
             window.location.href = '/index.html';
-        });
-    }
+        }
+    });
 }
 
 
@@ -365,6 +368,8 @@ const lose = new Audio();
 const death = new Audio();
 const winRound = new Audio();
 const winGame = new Audio();
+const battleMusic = new Audio();
+battleMusic.src = "./music/battleTunes.mp3"
 winGame.src = "./music/applause.wav"
 winRound.src = "./music/woohoo.wav"
 death.src = "./music/death.wav"
@@ -389,6 +394,16 @@ $(document).on("click", "#all-nighter-button", function () {
     console.log("clicked the all-nighter-button!");
     allNighter(currentUser, currentEnemy)
     allNightAnimation()
+})
+$("#mute").on("click", function () {
+    if(battleMusic.paused) {
+        context.resume().then(() => {
+            battleMusic.play();
+        });
+    } else {
+        context.resume().then(() => {
+        });
+    }
 })
 
 
