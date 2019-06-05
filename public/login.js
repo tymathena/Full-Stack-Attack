@@ -16,7 +16,7 @@ function renderLogIn() {
     </form>
     <div class="incorrect-password"></div>
     <div class="text-center">
-        <button type="submit" class="btn btn-primary col-12 login-submit" href="board.html">Login</button>
+        <button type="submit" class="btn btn-primary btn-default col-12 login-submit" href="board.html">Login</button>
     </div>`
 
     $(".login").append(logInForm)
