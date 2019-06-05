@@ -24,7 +24,7 @@
         "dp": 5,
         "image": "images/players/fullstack.jpg",
         "description": "Broad knowledge, vast power!",
-        "attackImage": "/images/attacks/fullstack.png"
+        "attackImage": "/images/attacks/fullStack.png"
     },
     {
         "role": "Teaching Assistant",
