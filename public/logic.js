@@ -359,8 +359,8 @@ initNightAnimation();
 initSleepAnimation();
 
 loadCurrentUser()
-
-var context = new AudioContext();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const context = new AudioContext();
 const basicAttack = new Audio();
 const specialAttack = new Audio();
 const sleep = new Audio();
@@ -380,7 +380,7 @@ specialAttack.src = "./music/Speacial-Attack.wav"
 
 // Event listeners:
 
-$("#attack-button").on("click", function () {
+$(document).on("click", "#attack-button", function () {
     console.log("clicked the attack button!");
     battle();
     // attackAnimation();
