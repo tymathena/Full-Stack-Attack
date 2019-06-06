@@ -6,7 +6,7 @@ function renderLogIn() {
     const logInForm =
         `<form class="row login">
         <div class="form-group col-12">
-            <label for="email">Email address</label>
+            <label for="email">User Name</label>
             <input type="text" class="form-control" id="email" placeholder="Enter User Name">
         </div>
         <div class="form-group col-12">
@@ -153,7 +153,8 @@ function startGame(classId) {
 
 
 renderLogIn()
-var context = new AudioContext();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const context = new AudioContext();
 const music = new Audio();
 music.src = "./music/charTunes.mp3";
 
@@ -173,7 +174,7 @@ $("#un-mute").on("click", function () {
         })
     }
 });
-$(".login-submit").on("click", function () {
+$("#loginId").on("click", ".login-submit", function () {
     console.log("click char select")
     tryLogInUser()
  });
